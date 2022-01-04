@@ -1,0 +1,129 @@
+group = 'com.browserstack'
+version = '1.0'
+description = 'browserstack-java-testng'
+
+apply plugin: 'java'
+
+repositories {
+    mavenCentral()
+}
+
+sourceSets {
+    test.java.srcDirs = ['src/test/java']
+    test.resources.srcDirs = ['src/test/resources']
+}
+
+dependencies {
+    implementation 'io.appium:java-client:7.5.1'
+    implementation 'org.testng:testng:7.4.0'
+    implementation 'com.browserstack:browserstack-local-java:1.0.3'
+    implementation 'io.rest-assured:rest-assured:4.3.3'
+}
+
+tasks.register('single', Test) {
+    useTestNG()
+    include '**/SingleTest.class'
+    testLogging {
+        events "PASSED", "FAILED", "SKIPPED"
+    }
+}
+
+tasks.register('parallel', Test) {
+    useTestNG() {
+        suites 'src/test/resources/web/suites/parallel.testng.xml'
+        parallel project.property('parallel')
+        threadCount Integer.parseInt(project.property('threads'))
+    }
+    testLogging {
+        events "PASSED", "FAILED", "SKIPPED"
+    }
+}
+
+tasks.register('fail', Test) {
+    useTestNG()
+    include '**/FailTest.class'
+    testLogging {
+        events "PASSED", "FAILED", "SKIPPED"
+    }
+}
+
+tasks.register('mobile', Test) {
+    useTestNG() {
+        suites 'src/test/resources/web/suites/mobile.testng.xml'
+        parallel project.property('parallel')
+        threadCount Integer.parseInt(project.property('threads'))
+    }
+    testLogging {
+        events "PASSED", "FAILED", "SKIPPED"
+    }
+}
+
+tasks.register('local', Test) {
+    useTestNG()
+    include '**/LocalTest.class'
+    testLogging {
+        events "PASSED", "FAILED", "SKIPPED"
+    }
+}
+
+tasks.register('local-parallel', Test) {
+    useTestNG() {
+        suites 'src/test/resources/web/suites/local.testng.xml'
+        parallel project.property('parallel')
+        threadCount Integer.parseInt(project.property('threads'))
+    }
+    testLogging {
+        events "PASSED", "FAILED", "SKIPPED"
+    }
+}
+
+tasks.register('appium-single', Test) {
+    useTestNG()
+    include '**/AppiumSingleTest.class'
+    testLogging {
+        events "PASSED", "FAILED", "SKIPPED"
+    }
+}
+
+tasks.register('appium-parallel', Test) {
+    useTestNG() {
+        suites 'src/test/resources/app/suites/parallel.testng.xml'
+        parallel project.property('parallel')
+        threadCount Integer.parseInt(project.property('threads'))
+    }
+    testLogging {
+        events "PASSED", "FAILED", "SKIPPED"
+    }
+}
+
+tasks.register('appium-local', Test) {
+    useTestNG()
+    include '**/AppiumLocalTest.class'
+    testLogging {
+        events "PASSED", "FAILED", "SKIPPED"
+    }
+}
+
+tasks.register('appium-fail', Test) {
+    useTestNG()
+    include '**/AppiumFailTest.class'
+    testLogging {
+        events "PASSED", "FAILED", "SKIPPED"
+    }
+}
+
+tasks.register('espresso', Test) {
+    useTestNG()
+    include '**/EspressoTest.class'
+    testLogging {
+        events "PASSED", "FAILED", "SKIPPED"
+    }
+}
+
+tasks.register('xcuitest', Test) {
+    useTestNG()
+    include '**/XCUITest.class'
+    testLogging {
+        events "PASSED", "FAILED", "SKIPPED"
+    }
+}

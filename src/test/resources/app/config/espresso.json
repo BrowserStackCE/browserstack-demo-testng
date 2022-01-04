@@ -1,0 +1,9 @@
+{
+  "app": "appUrl",
+  "testSuite": "testSuiteUrl",
+  "devices": [
+    "Samsung Galaxy S20-10.0",
+    "Google Pixel 3-9.0"
+  ],
+  "project": "Espresso_Test"
+}

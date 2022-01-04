@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Parallel">
+    <test name="ParallelTestPixel3">
+        <parameter name="config" value="devices"/>
+        <parameter name="environment" value="pixel3"/>
+        <classes>
+            <class name="com.app.test.AppiumParallelTest"/>
+        </classes>
+    </test>
+    <test name="ParallelTestOnePlus6T">
+        <parameter name="config" value="devices"/>
+        <parameter name="environment" value="oneplus6t"/>
+        <classes>
+            <class name="com.app.test.AppiumParallelTest"/>
+        </classes>
+    </test>
+    <test name="ParallelTestPixel5">
+        <parameter name="config" value="devices"/>
+        <parameter name="environment" value="pixel5"/>
+        <classes>
+            <class name="com.app.test.AppiumParallelTest"/>
+        </classes>
+    </test>
+    <test name="ParallelTestGalaxy10e">
+        <parameter name="config" value="devices"/>
+        <parameter name="environment" value="galaxys10e"/>
+        <classes>
+            <class name="com.app.test.AppiumParallelTest"/>
+        </classes>
+    </test>
+    <test name="ParallelTestRedmiNote9">
+        <parameter name="config" value="devices"/>
+        <parameter name="environment" value="redminote9"/>
+        <classes>
+            <class name="com.app.test.AppiumParallelTest"/>
+        </classes>
+    </test>
+</suite>

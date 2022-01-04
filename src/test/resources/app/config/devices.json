@@ -1,0 +1,30 @@
+{
+  "capabilities": {
+    "project": "BrowserStack Java TestNG",
+    "build": "Demo",
+    "browserstack.debug": "true",
+    "app": "DemoApp"
+  },
+  "environments": {
+    "pixel3": {
+      "device": "Google Pixel 3",
+      "os_version": "9.0"
+    },
+    "oneplus6t": {
+      "device": "OnePlus 6T",
+      "os_version": "9.0"
+    },
+    "pixel5": {
+      "device": "Google Pixel 5",
+      "os_version": "11.0"
+    },
+    "galaxys10e": {
+      "device": "Samsung Galaxy S10e",
+      "os_version": "9.0"
+    },
+    "redminote9": {
+      "device": "Xiaomi Redmi Note 9",
+      "os_version": "10.0"
+    }
+  }
+}

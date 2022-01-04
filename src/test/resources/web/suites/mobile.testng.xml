@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Parallel">
+    <test name="Parallel Test Pixel 5">
+        <parameter name="config" value="devices"/>
+        <parameter name="environment" value="pixel5"/>
+        <classes>
+            <class name="com.web.test.ParallelTest"/>
+        </classes>
+    </test>
+    <test name="Parallel Test Galaxy S10">
+        <parameter name="config" value="devices"/>
+        <parameter name="environment" value="galaxys10"/>
+        <classes>
+            <class name="com.web.test.ParallelTest"/>
+        </classes>
+    </test>
+    <test name="Parallel Test iPhone 11">
+        <parameter name="config" value="devices"/>
+        <parameter name="environment" value="iphone11"/>
+        <classes>
+            <class name="com.web.test.ParallelTest"/>
+        </classes>
+    </test>
+    <test name="Parallel Test iPhone XS">
+        <parameter name="config" value="devices"/>
+        <parameter name="environment" value="iphoneXS"/>
+        <classes>
+            <class name="com.web.test.ParallelTest"/>
+        </classes>
+    </test>
+    <test name="Parallel Test iPad 11">
+        <parameter name="config" value="devices"/>
+        <parameter name="environment" value="ipad11"/>
+        <classes>
+            <class name="com.web.test.ParallelTest"/>
+        </classes>
+    </test>
+</suite>

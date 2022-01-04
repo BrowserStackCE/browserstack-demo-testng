@@ -1,0 +1,31 @@
+{
+  "capabilities": {
+    "project": "BrowserStack Java TestNG",
+    "build": "Demo",
+    "realMobile": "true",
+    "browserstack.debug": "true",
+    "browserstack.networkLogs": "true"
+  },
+  "environments": {
+    "pixel5": {
+      "device": "Google Pixel 5",
+      "os_version": "11.0"
+    },
+    "galaxys10": {
+      "device": "Samsung Galaxy S10",
+      "os_version": "9.0"
+    },
+    "iphone11": {
+      "device": "iPhone 11",
+      "os_version": "13.0"
+    },
+    "iphoneXS": {
+      "device": "iPhone XS",
+      "os_version": "12.0"
+    },
+    "ipad11": {
+      "device": "iPad Pro 11 2020",
+      "os_version": "13.0"
+    }
+  }
+}
