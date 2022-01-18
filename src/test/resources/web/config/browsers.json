@@ -32,9 +32,9 @@
     },
     "opera": {
       "os": "Windows",
-      "os_version": "8.1",
-      "browser": "Opera",
-      "browser_version": "12.16"
+      "os_version": "10",
+      "browser": "Chrome",
+      "browser_version": "latest"
     },
     "custom": {
       "browserstack.geoLocation": "FR",

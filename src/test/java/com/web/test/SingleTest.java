@@ -33,10 +33,10 @@ public class SingleTest {
         caps.setCapability("build", "Demo");
         caps.setCapability("name", m.getName() + " - Chrome latest");
 
-//        caps.setCapability("os", "Windows");
-//        caps.setCapability("os_version", "10");
-//        caps.setCapability("browser", "Chrome");
-//        caps.setCapability("browser_version", "latest");
+        caps.setCapability("os", "Windows");
+        caps.setCapability("os_version", "10");
+        caps.setCapability("browser", "Chrome");
+        caps.setCapability("browser_version", "latest");
 
         caps.setCapability("browserstack.user", USERNAME);
         caps.setCapability("browserstack.key", ACCESS_KEY);
