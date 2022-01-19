@@ -15,7 +15,6 @@ import org.openqa.selenium.support.ui.Wait;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
-import java.io.File;
 import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -52,7 +51,7 @@ public class AppiumLocalTest {
             System.out.println("Uploading app...");
             given()
                     .header("Content-Type", "multipart/form-data")
-                    .multiPart("file", new File("src/test/resources/app/appdata/LocalSample.apk"), "text/apk")
+                    .multiPart("url", "https://www.browserstack.com/app-automate/sample-apps/android/LocalSample.apk", "text")
                     .param("custom_id", "LocalApp")
                     .post("upload");
         } else {

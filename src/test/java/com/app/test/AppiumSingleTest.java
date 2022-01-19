@@ -17,7 +17,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
-import java.io.File;
 import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -51,7 +50,7 @@ public class AppiumSingleTest {
             System.out.println("Uploading app...");
             given()
                     .header("Content-Type", "multipart/form-data")
-                    .multiPart("file", new File("src/test/resources/app/appdata/WikipediaSample.apk"), "text/apk")
+                    .multiPart("url", "https://www.browserstack.com/app-automate/sample-apps/android/WikipediaSample.apk", "text")
                     .param("custom_id", "DemoApp")
                     .post("upload");
         } else {

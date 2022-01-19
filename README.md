@@ -70,6 +70,15 @@ Test execution using [TestNG](http://testng.org) on BrowserStack.
 - To use specific number of threads:
   - For Maven use `-Dthreads=<thread-count>`. Example `-Dthreads=3`
   - For Gradle use `-Pthreads=<thread-count>`. Example `-Pthreads=3`
+- Apps used to test using Appium:
+  - Demo App: [WikipediaSample.apk](https://www.browserstack.com/app-automate/sample-apps/android/WikipediaSample.apk)
+  - Local App: [LocalSample.apk](https://www.browserstack.com/app-automate/sample-apps/android/LocalSample.apk)
+- Resources used to test using Espresso:
+  - App: [Calculator.apk](https://www.browserstack.com/app-automate/sample-apps/android/Calculator.apk)
+  - Test-suite: [CalculatorTest.apk](https://www.browserstack.com/app-automate/sample-apps/android/CalculatorTest.apk)
+- Resources used to test using XCUITest:
+  - App: [BrowserStack-SampleApp.ipa](https://www.browserstack.com/app-automate/sample-apps/ios/BrowserStack-SampleApp.ipa)
+  - Test-suite: [BrowserStack-SampleXCUITest.zip](https://www.browserstack.com/app-automate/sample-apps/ios/BrowserStack-SampleXCUITest.zip)
 - Export the environment variables for the Username and Access Key of your BrowserStack account.
   ```sh
   export BROWSERSTACK_USERNAME=<browserstack-username> && export BROWSERSTACK_ACCESS_KEY=<browserstack-access-key>

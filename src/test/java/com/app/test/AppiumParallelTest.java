@@ -52,7 +52,7 @@ public class AppiumParallelTest {
             System.out.println("Uploading app...");
             given()
                     .header("Content-Type", "multipart/form-data")
-                    .multiPart("file", new File("src/test/resources/app/appdata/WikipediaSample.apk"), "text/apk")
+                    .multiPart("url", "https://www.browserstack.com/app-automate/sample-apps/android/WikipediaSample.apk", "text")
                     .param("custom_id", "DemoApp")
                     .post("upload");
         } else {
