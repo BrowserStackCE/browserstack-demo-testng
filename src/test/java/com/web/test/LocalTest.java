@@ -46,9 +46,9 @@ public class LocalTest {
 
         caps.setCapability("browserstack.user", USERNAME);
         caps.setCapability("browserstack.key", ACCESS_KEY);
-        caps.setCapability("browserstack.debug", "true");
-        caps.setCapability("browserstack.networkLogs", "true");
-        caps.setCapability("browserstack.local", "true");
+        caps.setCapability("browserstack.debug", true);
+        caps.setCapability("browserstack.networkLogs", true);
+        caps.setCapability("browserstack.local", true);
 
         driver = new RemoteWebDriver(new URL(URL), caps);
     }
