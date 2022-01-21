@@ -1,37 +1,32 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="BrowserStack Suite">
-    <test name="BrowserStack Chrome Test">
-        <parameter name="config" value="browsers"/>
-        <parameter name="environment" value="chrome"/>
+<suite name="Parallel Suite">
+    <test name="Parallel Test 1">
+        <parameter name="capability" value="0"/>
         <classes>
             <class name="com.web.test.ParallelTest"/>
         </classes>
     </test>
-    <test name="BrowserStack Firefox Test">
-        <parameter name="config" value="browsers"/>
-        <parameter name="environment" value="firefox"/>
+    <test name="Parallel Test 2">
+        <parameter name="capability" value="1"/>
         <classes>
             <class name="com.web.test.ParallelTest"/>
         </classes>
     </test>
-    <test name="BrowserStack Edge Test">
-        <parameter name="config" value="browsers"/>
-        <parameter name="environment" value="edge"/>
+    <test name="Parallel Test 3">
+        <parameter name="capability" value="2"/>
         <classes>
             <class name="com.web.test.ParallelTest"/>
         </classes>
     </test>
-    <test name="BrowserStack Safari Test">
-        <parameter name="config" value="browsers"/>
-        <parameter name="environment" value="safari"/>
+    <test name="Parallel Test 4">
+        <parameter name="capability" value="3"/>
         <classes>
             <class name="com.web.test.ParallelTest"/>
         </classes>
     </test>
-    <test name="BrowserStack Opera Test">
-        <parameter name="config" value="browsers"/>
-        <parameter name="environment" value="opera"/>
+    <test name="Parallel Test 5">
+        <parameter name="capability" value="4"/>
         <classes>
             <class name="com.web.test.ParallelTest"/>
         </classes>

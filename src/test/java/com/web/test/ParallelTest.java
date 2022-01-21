@@ -33,18 +33,16 @@ public class ParallelTest {
     private static final String URL = "http://hub-cloud.browserstack.com/wd/hub";
 
     @BeforeMethod(alwaysRun = true)
-    @Parameters({"config", "environment"})
-    public void setup(String configFile, String environment, Method m) throws MalformedURLException {
+    @Parameters({"config", "capability"})
+    public void setup(String configFile, String capability, Method m) throws MalformedURLException {
         JsonPath jsonPath = JsonPath.from(new File("src/test/resources/web/config/" + configFile + ".json"));
-        Map<String, String> basicCapabilities = jsonPath.getMap("capabilities");
-        Map<String, String> browserCapabilities = jsonPath.getMap("environments." + environment);
         Map<String, String> capabilitiesMap = new HashMap<>();
-        capabilitiesMap.putAll(basicCapabilities);
-        capabilitiesMap.putAll(browserCapabilities);
-        if (browserCapabilities.get("device") == null) {
-            capabilitiesMap.put("name", m.getName() + " - " + browserCapabilities.get("browser") + " " + browserCapabilities.get("browser_version"));
+        capabilitiesMap.putAll(jsonPath.getMap("commonCapabilities"));
+        capabilitiesMap.putAll(jsonPath.getMap("capabilities[" + capability + "]"));
+        if (capabilitiesMap.get("device") == null) {
+            capabilitiesMap.put("name", m.getName() + " - " + capabilitiesMap.get("browser") + " " + capabilitiesMap.get("browser_version"));
         } else {
-            capabilitiesMap.put("name", m.getName() + " - " + browserCapabilities.get("device"));
+            capabilitiesMap.put("name", m.getName() + " - " + capabilitiesMap.get("device"));
         }
         capabilitiesMap.put("browserstack.user", USERNAME);
         capabilitiesMap.put("browserstack.key", ACCESS_KEY);

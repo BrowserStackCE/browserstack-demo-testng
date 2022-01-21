@@ -1,44 +1,41 @@
 {
-  "capabilities": {
+  "commonCapabilities": {
     "project": "BrowserStack Java TestNG",
     "build": "Demo",
-    "browserstack.debug": "true",
-    "browserstack.networkLogs": "true"
+    "browserstack.debug": true,
+    "browserstack.networkLogs": true
   },
-  "environments": {
-    "chrome": {
+  "capabilities": [
+    {
       "os": "OS X",
       "os_version": "Big Sur",
       "browser": "Chrome",
       "browser_version": "latest"
     },
-    "firefox": {
+    {
       "os": "Windows",
       "os_version": "10",
       "browser": "Firefox",
       "browser_version": "latest"
     },
-    "edge": {
+    {
       "os": "Windows",
       "os_version": "10",
       "browser": "Edge",
       "browser_version": "latest"
     },
-    "safari": {
+    {
       "os": "OS X",
       "os_version": "Big Sur",
       "browser": "Safari",
       "browser_version": "latest"
     },
-    "opera": {
+    {
       "os": "Windows",
       "os_version": "10",
       "browser": "Chrome",
       "browser_version": "latest"
-    },
-    "custom": {
-      "browserstack.geoLocation": "FR",
-      "browserstack.customNetwork": "1000,1000,100,1"
     }
-  }
+  ]
 }
+

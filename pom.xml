@@ -74,6 +74,12 @@
                         <configuration>
                             <parallel>tests</parallel>
                             <threadCount>${threads}</threadCount>
+                            <systemProperties>
+                                <property>
+                                    <name>config</name>
+                                    <value>desktop</value>
+                                </property>
+                            </systemProperties>
                             <suiteXmlFiles>
                                 <suiteXmlFile>src/test/resources/web/suites/parallel.testng.xml</suiteXmlFile>
                             </suiteXmlFiles>
@@ -110,8 +116,14 @@
                         <configuration>
                             <parallel>tests</parallel>
                             <threadCount>${threads}</threadCount>
+                            <systemProperties>
+                                <property>
+                                    <name>config</name>
+                                    <value>mobile</value>
+                                </property>
+                            </systemProperties>
                             <suiteXmlFiles>
-                                <suiteXmlFile>src/test/resources/web/suites/mobile.testng.xml</suiteXmlFile>
+                                <suiteXmlFile>src/test/resources/web/suites/parallel.testng.xml</suiteXmlFile>
                             </suiteXmlFiles>
                         </configuration>
                     </plugin>
@@ -146,6 +158,12 @@
                         <configuration>
                             <parallel>tests</parallel>
                             <threadCount>${threads}</threadCount>
+                            <systemProperties>
+                                <property>
+                                    <name>config</name>
+                                    <value>desktop</value>
+                                </property>
+                            </systemProperties>
                             <suiteXmlFiles>
                                 <suiteXmlFile>src/test/resources/web/suites/local.testng.xml</suiteXmlFile>
                             </suiteXmlFiles>

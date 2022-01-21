@@ -24,12 +24,11 @@ public class LocalTest {
 
     @BeforeSuite(alwaysRun = true)
     public void setupLocal() throws Exception {
-        System.out.println("Connecting local");
         local = new Local();
         Map<String, String> bsLocalArgs = new HashMap<>();
         bsLocalArgs.put("key", ACCESS_KEY);
         local.start(bsLocalArgs);
-        System.out.println("Connected. Now testing...");
+        System.out.println("Local testing connection established...");
     }
 
     @BeforeMethod(alwaysRun = true)
@@ -69,7 +68,7 @@ public class LocalTest {
     @AfterSuite(alwaysRun = true)
     public void closeLocal() throws Exception {
         local.stop();
-        System.out.println("Binary stopped");
+        System.out.println("Local testing connection terminated...");
     }
 
 }

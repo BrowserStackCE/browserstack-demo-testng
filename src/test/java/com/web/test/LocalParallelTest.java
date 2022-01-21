@@ -19,6 +19,7 @@ import java.util.Map;
 public class LocalParallelTest {
 
     private static final ThreadLocal<WebDriver> driverThread = new ThreadLocal<>();
+    private final Map<String, String> capabilitiesMap = new HashMap<>();
     private Local local;
 
     private static final String USERNAME = System.getenv("BROWSERSTACK_USERNAME");
@@ -27,35 +28,38 @@ public class LocalParallelTest {
 
     @BeforeSuite(alwaysRun = true)
     public void before() throws Exception {
-        System.out.println("Connecting local");
         local = new Local();
         Map<String, String> bsLocalArgs = new HashMap<>();
         bsLocalArgs.put("key", ACCESS_KEY);
         local.start(bsLocalArgs);
-        System.out.println("Connected. Now testing...");
+        System.out.println("Local testing connection established...");
     }
 
     @BeforeMethod(alwaysRun = true)
-    @Parameters({"config", "environment"})
-    public void setup(String configFile, String environment, Method m) throws MalformedURLException {
+    @Parameters({"config", "capability"})
+    public void setup(String configFile, String capability, Method m) throws MalformedURLException {
         JsonPath jsonPath = JsonPath.from(new File("src/test/resources/web/config/" + configFile + ".json"));
-        Map<String, String> basicCapabilities = jsonPath.getMap("capabilities");
-        Map<String, String> browserCapabilities = jsonPath.getMap("environments." + environment);
-        Map<String, String> capabilitiesMap = new HashMap<>();
-        capabilitiesMap.putAll(basicCapabilities);
-        capabilitiesMap.putAll(browserCapabilities);
-        capabilitiesMap.put("name", m.getName() + " - " + browserCapabilities.get("browser") + " " + browserCapabilities.get("browser_version"));
-        capabilitiesMap.put("browserstack.local", "true");
+        capabilitiesMap.putAll(jsonPath.getMap("commonCapabilities"));
+        capabilitiesMap.putAll(jsonPath.getMap("capabilities[" + capability + "]"));
+        if (capabilitiesMap.get("device") == null) {
+            capabilitiesMap.put("name", m.getName() + " - " + capabilitiesMap.get("browser") + " " + capabilitiesMap.get("browser_version"));
+        } else {
+            capabilitiesMap.put("name", m.getName() + " - " + capabilitiesMap.get("device"));
+        }
         capabilitiesMap.put("browserstack.user", USERNAME);
         capabilitiesMap.put("browserstack.key", ACCESS_KEY);
+        capabilitiesMap.put("browserstack.local", "true");
         driverThread.set(new RemoteWebDriver(new URL(URL), new DesiredCapabilities(capabilitiesMap)));
-
     }
 
     @Test
     public void openLocalWebPage() {
         WebDriver driver = driverThread.get();
-        driver.get("http://localhost:8000");
+        if (capabilitiesMap.getOrDefault("device", "none").contains("iPhone")) {
+            driver.get("http://bs-local.com:8000");
+        } else {
+            driver.get("http://localhost:8000");
+        }
         Assert.assertEquals(driver.getTitle(), "Local Server", "Incorrect title");
     }
 
@@ -70,7 +74,7 @@ public class LocalParallelTest {
     @AfterSuite(alwaysRun = true)
     public void after() throws Exception {
         local.stop();
-        System.out.println("Binary stopped");
+        System.out.println("Local testing connection terminated...");
     }
 
 }
