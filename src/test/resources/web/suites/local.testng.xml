@@ -4,31 +4,31 @@
     <test name="Local Test 1">
         <parameter name="capability" value="0"/>
         <classes>
-            <class name="com.web.test.LocalParallelTest"/>
+            <class name="com.test.web.LocalParallelTest"/>
         </classes>
     </test>
     <test name="Local Test 2">
         <parameter name="capability" value="1"/>
         <classes>
-            <class name="com.web.test.LocalParallelTest"/>
+            <class name="com.test.web.LocalParallelTest"/>
         </classes>
     </test>
     <test name="Local Test 3">
         <parameter name="capability" value="2"/>
         <classes>
-            <class name="com.web.test.LocalParallelTest"/>
+            <class name="com.test.web.LocalParallelTest"/>
         </classes>
     </test>
     <test name="Local Test 4">
         <parameter name="capability" value="3"/>
         <classes>
-            <class name="com.web.test.LocalParallelTest"/>
+            <class name="com.test.web.LocalParallelTest"/>
         </classes>
     </test>
     <test name="Local Test 5">
         <parameter name="capability" value="4"/>
         <classes>
-            <class name="com.web.test.LocalParallelTest"/>
+            <class name="com.test.web.LocalParallelTest"/>
         </classes>
     </test>
 </suite>

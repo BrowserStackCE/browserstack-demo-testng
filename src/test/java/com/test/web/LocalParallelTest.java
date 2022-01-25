@@ -1,4 +1,4 @@
-package com.web.test;
+package com.test.web;
 
 import com.browserstack.local.Local;
 import io.restassured.path.json.JsonPath;

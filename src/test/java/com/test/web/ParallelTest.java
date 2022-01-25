@@ -1,4 +1,4 @@
-package com.web.test;
+package com.test.web;
 
 import io.restassured.path.json.JsonPath;
 import org.openqa.selenium.By;

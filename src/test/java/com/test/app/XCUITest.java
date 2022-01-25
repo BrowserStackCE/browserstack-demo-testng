@@ -1,4 +1,4 @@
-package com.app.test;
+package com.test.app;
 
 import io.restassured.authentication.PreemptiveBasicAuthScheme;
 import io.restassured.builder.RequestSpecBuilder;

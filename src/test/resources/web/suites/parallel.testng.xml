@@ -4,31 +4,31 @@
     <test name="Parallel Test 1">
         <parameter name="capability" value="0"/>
         <classes>
-            <class name="com.web.test.ParallelTest"/>
+            <class name="com.test.web.ParallelTest"/>
         </classes>
     </test>
     <test name="Parallel Test 2">
         <parameter name="capability" value="1"/>
         <classes>
-            <class name="com.web.test.ParallelTest"/>
+            <class name="com.test.web.ParallelTest"/>
         </classes>
     </test>
     <test name="Parallel Test 3">
         <parameter name="capability" value="2"/>
         <classes>
-            <class name="com.web.test.ParallelTest"/>
+            <class name="com.test.web.ParallelTest"/>
         </classes>
     </test>
     <test name="Parallel Test 4">
         <parameter name="capability" value="3"/>
         <classes>
-            <class name="com.web.test.ParallelTest"/>
+            <class name="com.test.web.ParallelTest"/>
         </classes>
     </test>
     <test name="Parallel Test 5">
         <parameter name="capability" value="4"/>
         <classes>
-            <class name="com.web.test.ParallelTest"/>
+            <class name="com.test.web.ParallelTest"/>
         </classes>
     </test>
 </suite>
