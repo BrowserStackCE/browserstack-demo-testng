@@ -1,20 +1,23 @@
-package com.test.app;
+package com.test.app.appium.ios;
 
 import com.browserstack.local.Local;
+import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileDriver;
 import io.appium.java_client.MobileElement;
-import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.ios.IOSDriver;
 import io.restassured.authentication.PreemptiveBasicAuthScheme;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
+import io.restassured.path.json.JsonPath;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NotFoundException;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
-import org.testng.Assert;
 import org.testng.annotations.*;
 
+import java.io.File;
 import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -24,17 +27,20 @@ import java.util.List;
 import java.util.Map;
 
 import static io.restassured.RestAssured.*;
+import static org.testng.Assert.assertEquals;
 
-public class AppiumLocalTest {
+public class LocalParallelTest {
+
+    private static final ThreadLocal<MobileDriver<MobileElement>> driverThread = new ThreadLocal<>();
 
     private static final String USERNAME = System.getenv("BROWSERSTACK_USERNAME");
     private static final String ACCESS_KEY = System.getenv("BROWSERSTACK_ACCESS_KEY");
     private static final String URL = "http://hub-cloud.browserstack.com/wd/hub";
-    private MobileDriver<MobileElement> driver;
+
     private Local local;
 
     @BeforeSuite(alwaysRun = true)
-    public void setupAppAndLocal() throws Exception {
+    public void setupApp() throws Exception {
         PreemptiveBasicAuthScheme authenticationScheme = new PreemptiveBasicAuthScheme();
         authenticationScheme.setUserName(USERNAME);
         authenticationScheme.setPassword(ACCESS_KEY);
@@ -47,68 +53,64 @@ public class AppiumLocalTest {
                 .expectStatusCode(200)
                 .build();
         List<String> customIds = get("recent_apps").jsonPath().getList("custom_id");
-        if (customIds == null || !customIds.contains("LocalApp")) {
+        if (customIds == null || !customIds.contains("iOSLocalApp")) {
             System.out.println("Uploading app...");
             given()
                     .header("Content-Type", "multipart/form-data")
-                    .multiPart("url", "https://www.browserstack.com/app-automate/sample-apps/android/LocalSample.apk", "text")
-                    .param("custom_id", "LocalApp")
+                    .multiPart("url", "https://www.browserstack.com/app-automate/sample-apps/ios/LocalSample.ipa", "text")
+                    .param("custom_id", "iOSLocalApp")
                     .post("upload");
         } else {
             System.out.println("Using previously uploaded app...");
         }
-        System.out.println("Connecting local");
         local = new Local();
         Map<String, String> options = new HashMap<>();
         options.put("key", ACCESS_KEY);
         local.start(options);
-        System.out.println("Connected. Now testing...");
+        System.out.println("Local testing connection established...");
     }
 
     @BeforeMethod(alwaysRun = true)
-    public void setupDriver(Method m) throws MalformedURLException {
-        DesiredCapabilities caps = new DesiredCapabilities();
-        caps.setCapability("project", "BrowserStack Java TestNG");
-        caps.setCapability("build", "Demo");
-        caps.setCapability("name", m.getName() + " - Google Pixel 3");
-
-        caps.setCapability("device", "Google Pixel 3");
-        caps.setCapability("os_version", "9.0");
-        caps.setCapability("app", "LocalApp");
-
-        caps.setCapability("browserstack.user", USERNAME);
-        caps.setCapability("browserstack.key", ACCESS_KEY);
-        caps.setCapability("browserstack.debug", true);
-        caps.setCapability("browserstack.networkLogs", true);
-        caps.setCapability("browserstack.local", true);
-
-        driver = new AndroidDriver<>(new URL(URL), caps);
+    @Parameters({"config", "capability"})
+    public void setupDriver(String configFile, String capability, Method m) throws MalformedURLException {
+        JsonPath jsonPath = JsonPath.from(new File("src/test/resources/app/config/" + configFile + ".json"));
+        Map<String, String> capabilitiesMap = new HashMap<>();
+        capabilitiesMap.putAll(jsonPath.getMap("commonCapabilities"));
+        capabilitiesMap.putAll(jsonPath.getMap("capabilities[" + capability + "]"));
+        capabilitiesMap.put("name", m.getName() + " - " + capabilitiesMap.get("device"));
+        capabilitiesMap.put("app", "iOSLocalApp");
+        capabilitiesMap.put("browserstack.user", USERNAME);
+        capabilitiesMap.put("browserstack.key", ACCESS_KEY);
+        capabilitiesMap.put("browserstack.local", "true");
+        driverThread.set(new IOSDriver<>(new URL(URL), new DesiredCapabilities(capabilitiesMap)));
     }
 
     @Test
-    public void localAppCheckAssets() {
+    public void testLocalConnection() {
+        MobileDriver<MobileElement> driver = driverThread.get();
         Wait<MobileDriver<MobileElement>> wait = new FluentWait<>(driver)
                 .withTimeout(Duration.ofSeconds(10))
                 .pollingEvery(Duration.ofMillis(500))
                 .ignoring(NotFoundException.class);
-        MobileElement searchElement = wait.until(d -> d.findElementById("com.example.android.basicnetworking:id/test_action"));
-        searchElement.click();
-        List<MobileElement> allTextViewElements = wait.until(d -> d.findElementsByClassName("android.widget.TextView"));
-        boolean textPresent = allTextViewElements.stream().anyMatch(e -> e.getText().contains("The active connection is wifi."));
-        Assert.assertTrue(textPresent, "Text is not present");
+        driver.findElementByAccessibilityId("TestBrowserStackLocal").click();
+        By result = MobileBy.AccessibilityId("ResultBrowserStackLocal");
+        wait.until(d -> d.findElement(result).getText().contains("Response is:"));
+        String resultText = driver.findElement(result).getText();
+        assertEquals(resultText, "Response is: Up and running", "Local connection is not up");
     }
 
-    @AfterMethod(alwaysRun = true)
-    public void closeDriver(Method m) {
-        JavascriptExecutor js = (JavascriptExecutor) driver;
+    @AfterTest(alwaysRun = true)
+    public void tearDown() {
+        JavascriptExecutor js = (JavascriptExecutor) driverThread.get();
         js.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"passed\"}}");
-        driver.quit();
+        driverThread.get().quit();
+        driverThread.remove();
     }
 
     @AfterSuite(alwaysRun = true)
     public void closeLocal() throws Exception {
         local.stop();
-        System.out.println("Binary stopped");
+        System.out.println("Local testing connection terminated...");
     }
 
 }

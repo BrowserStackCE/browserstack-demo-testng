@@ -1,10 +1,8 @@
-package com.test.app;
+package com.test.app.espresso;
 
 import io.restassured.authentication.PreemptiveBasicAuthScheme;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
-import io.restassured.filter.log.RequestLoggingFilter;
-import io.restassured.filter.log.ResponseLoggingFilter;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -26,8 +24,6 @@ public class EspressoTest {
                 .setBaseUri("https://api-cloud.browserstack.com")
                 .setBasePath("app-automate/espresso/v2")
                 .setAuth(authenticationScheme)
-                .addFilter(new RequestLoggingFilter())
-                .addFilter(new ResponseLoggingFilter())
                 .build();
         responseSpecification = new ResponseSpecBuilder()
                 .expectStatusCode(200)

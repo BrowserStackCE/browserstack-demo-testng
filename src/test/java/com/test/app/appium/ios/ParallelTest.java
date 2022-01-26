@@ -1,32 +1,29 @@
-package com.test.app;
+package com.test.app.appium.ios;
 
 import io.appium.java_client.MobileDriver;
 import io.appium.java_client.MobileElement;
-import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.ios.IOSDriver;
 import io.restassured.authentication.PreemptiveBasicAuthScheme;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.path.json.JsonPath;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.NotFoundException;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.support.ui.FluentWait;
-import org.openqa.selenium.support.ui.Wait;
-import org.testng.Assert;
 import org.testng.annotations.*;
 
 import java.io.File;
 import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.time.Duration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import static io.restassured.RestAssured.*;
+import static org.testng.Assert.assertEquals;
 
-public class AppiumParallelTest {
+public class ParallelTest {
 
     private static final ThreadLocal<MobileDriver<MobileElement>> driverThread = new ThreadLocal<>();
 
@@ -48,12 +45,12 @@ public class AppiumParallelTest {
                 .expectStatusCode(200)
                 .build();
         List<String> customIds = get("recent_apps").jsonPath().getList("custom_id");
-        if (customIds == null || !customIds.contains("DemoApp")) {
+        if (customIds == null || !customIds.contains("iOSDemoApp")) {
             System.out.println("Uploading app...");
             given()
                     .header("Content-Type", "multipart/form-data")
-                    .multiPart("url", "https://www.browserstack.com/app-automate/sample-apps/android/WikipediaSample.apk", "text")
-                    .param("custom_id", "DemoApp")
+                    .multiPart("url", "https://www.browserstack.com/app-automate/sample-apps/ios/BStackSampleApp.ipa", "text")
+                    .param("custom_id", "iOSDemoApp")
                     .post("upload");
         } else {
             System.out.println("Using previously uploaded app...");
@@ -61,36 +58,31 @@ public class AppiumParallelTest {
     }
 
     @BeforeMethod(alwaysRun = true)
-    @Parameters({"config", "environment"})
-    public void setupDriver(String configFile, String environment, Method m) throws MalformedURLException {
+    @Parameters({"config", "capability"})
+    public void setupDriver(String configFile, String capability, Method m) throws MalformedURLException {
         JsonPath jsonPath = JsonPath.from(new File("src/test/resources/app/config/" + configFile + ".json"));
-        Map<String, String> basicCapabilities = jsonPath.getMap("capabilities");
-        Map<String, String> deviceCapabilities = jsonPath.getMap("environments." + environment);
         Map<String, String> capabilitiesMap = new HashMap<>();
-        capabilitiesMap.putAll(basicCapabilities);
-        capabilitiesMap.putAll(deviceCapabilities);
-        capabilitiesMap.put("name", m.getName() + " - " + deviceCapabilities.get("device"));
+        capabilitiesMap.putAll(jsonPath.getMap("commonCapabilities"));
+        capabilitiesMap.putAll(jsonPath.getMap("capabilities[" + capability + "]"));
+        capabilitiesMap.put("name", m.getName() + " - " + capabilitiesMap.get("device"));
+        capabilitiesMap.put("app", "iOSDemoApp");
         capabilitiesMap.put("browserstack.user", USERNAME);
         capabilitiesMap.put("browserstack.key", ACCESS_KEY);
-        driverThread.set(new AndroidDriver<>(new URL(URL), new DesiredCapabilities(capabilitiesMap)));
+        driverThread.set(new IOSDriver<>(new URL(URL), new DesiredCapabilities(capabilitiesMap)));
     }
 
     @Test
-    public void searchWikipedia() {
-        Wait<MobileDriver<MobileElement>> wait = new FluentWait<>(driverThread.get())
-                .withTimeout(Duration.ofSeconds(10))
-                .pollingEvery(Duration.ofMillis(500))
-                .ignoring(NotFoundException.class);
-        MobileElement searchElement = wait.until(d -> d.findElementByAccessibilityId("Search Wikipedia"));
-        searchElement.click();
-        MobileElement insertTextElement = wait.until(d -> d.findElementById("org.wikipedia.alpha:id/search_src_text"));
-        insertTextElement.sendKeys("BrowserStack");
-        List<MobileElement> allProductName = wait.until(d -> d.findElementsByClassName("android.widget.TextView"));
-        Assert.assertTrue(allProductName.size() > 0, "Products are not present");
+    public void printText() {
+        MobileDriver<MobileElement> driver = driverThread.get();
+        driver.findElementByAccessibilityId("Text Button").click();
+        driver.findElementByAccessibilityId("Text Input").click();
+        driver.findElementByAccessibilityId("Text Input").sendKeys("Welcome to BrowserStack" + Keys.ENTER);
+        assertEquals(driver.findElementByAccessibilityId("Text Output").getText(),
+                "Welcome to BrowserStack", "Incorrect text");
     }
 
-    @AfterMethod(alwaysRun = true)
-    public void tearDown(Method m) {
+    @AfterTest(alwaysRun = true)
+    public void tearDown() {
         JavascriptExecutor js = (JavascriptExecutor) driverThread.get();
         js.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"passed\"}}");
         driverThread.get().quit();

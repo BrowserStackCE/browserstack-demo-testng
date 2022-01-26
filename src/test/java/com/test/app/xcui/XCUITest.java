@@ -1,4 +1,4 @@
-package com.test.app;
+package com.test.app.xcui;
 
 import io.restassured.authentication.PreemptiveBasicAuthScheme;
 import io.restassured.builder.RequestSpecBuilder;

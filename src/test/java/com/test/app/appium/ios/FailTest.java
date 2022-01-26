@@ -1,17 +1,15 @@
-package com.test.app;
+package com.test.app.appium.ios;
 
 import io.appium.java_client.MobileDriver;
 import io.appium.java_client.MobileElement;
-import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.ios.IOSDriver;
 import io.restassured.authentication.PreemptiveBasicAuthScheme;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.NotFoundException;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.support.ui.FluentWait;
-import org.openqa.selenium.support.ui.Wait;
-import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
@@ -20,12 +18,12 @@ import org.testng.annotations.Test;
 import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.time.Duration;
 import java.util.List;
 
 import static io.restassured.RestAssured.*;
+import static org.testng.Assert.assertNotEquals;
 
-public class AppiumSingleTest {
+public class FailTest {
 
     private static final String USERNAME = System.getenv("BROWSERSTACK_USERNAME");
     private static final String ACCESS_KEY = System.getenv("BROWSERSTACK_ACCESS_KEY");
@@ -46,12 +44,12 @@ public class AppiumSingleTest {
                 .expectStatusCode(200)
                 .build();
         List<String> customIds = get("recent_apps").jsonPath().getList("custom_id");
-        if (customIds == null || !customIds.contains("DemoApp")) {
+        if (customIds == null || !customIds.contains("iOSDemoApp")) {
             System.out.println("Uploading app...");
             given()
                     .header("Content-Type", "multipart/form-data")
-                    .multiPart("url", "https://www.browserstack.com/app-automate/sample-apps/android/WikipediaSample.apk", "text")
-                    .param("custom_id", "DemoApp")
+                    .multiPart("url", "https://www.browserstack.com/app-automate/sample-apps/ios/BStackSampleApp.ipa", "text")
+                    .param("custom_id", "iOSDemoApp")
                     .post("upload");
         } else {
             System.out.println("Using previously uploaded app...");
@@ -63,38 +61,35 @@ public class AppiumSingleTest {
         DesiredCapabilities caps = new DesiredCapabilities();
         caps.setCapability("project", "BrowserStack Java TestNG");
         caps.setCapability("build", "Demo");
-        caps.setCapability("name", m.getName() + " - Google Pixel 3");
+        caps.setCapability("name", m.getName() + " - iPhone 11 Pro");
 
-        caps.setCapability("device", "Google Pixel 3");
-        caps.setCapability("os_version", "10.0");
-        caps.setCapability("app", "DemoApp");
+        caps.setCapability("device", "iPhone 11 Pro");
+        caps.setCapability("os_version", "13");
+        caps.setCapability("app", "iOSDemoApp");
 
         caps.setCapability("browserstack.user", USERNAME);
         caps.setCapability("browserstack.key", ACCESS_KEY);
         caps.setCapability("browserstack.debug", true);
         caps.setCapability("browserstack.networkLogs", true);
 
-        driver = new AndroidDriver<>(new URL(URL), caps);
+        driver = new IOSDriver<>(new URL(URL), caps);
     }
 
     @Test
-    public void searchWikipedia() {
-        Wait<MobileDriver<MobileElement>> wait = new FluentWait<>(driver)
-                .withTimeout(Duration.ofSeconds(10))
-                .pollingEvery(Duration.ofMillis(500))
-                .ignoring(NotFoundException.class);
-        MobileElement searchElement = wait.until(d -> d.findElementByAccessibilityId("Search Wikipedia"));
-        searchElement.click();
-        MobileElement insertTextElement = wait.until(d -> d.findElementById("org.wikipedia.alpha:id/search_src_text"));
-        insertTextElement.sendKeys("BrowserStack");
-        List<MobileElement> allProductName = wait.until(d -> d.findElementsByClassName("android.widget.TextView"));
-        Assert.assertTrue(allProductName.size() > 0, "Products are not present");
+    public void printText() {
+        driver.findElementByAccessibilityId("Text Button").click();
+        driver.findElementByAccessibilityId("Text Input").click();
+        driver.findElementByAccessibilityId("Text Input").sendKeys("Welcome to BrowserStack" + Keys.ENTER);
+        assertNotEquals(driver.findElementByAccessibilityId("Text Output").getText(),
+                "Welcome to BrowserStack", "Incorrect text");
     }
 
     @AfterMethod(alwaysRun = true)
-    public void tearDown(Method m) {
+    public void teardown(ITestResult tr) {
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"passed\"}}");
+        String reason = tr.getThrowable().getMessage().split("\\n")[0].replaceAll("[\\\\{}\"]", "");
+        js.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"failed\", \"reason\": \"" + reason + "\"}}");
         driver.quit();
     }
+
 }
