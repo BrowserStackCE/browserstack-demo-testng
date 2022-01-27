@@ -1,17 +1,12 @@
-package com.test.web;
+package com.test.web.desktop;
 
+import com.browserstack.local.Local;
 import io.restassured.path.json.JsonPath;
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.io.File;
 import java.lang.reflect.Method;
@@ -20,23 +15,31 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.openqa.selenium.Keys.TAB;
-import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
-import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated;
+import static org.testng.Assert.assertEquals;
 
-public class ParallelTest {
+public class LocalParallelTest {
 
     private static final ThreadLocal<WebDriver> driverThread = new ThreadLocal<>();
+    private final Map<String, String> capabilitiesMap = new HashMap<>();
+    private Local local;
 
     private static final String USERNAME = System.getenv("BROWSERSTACK_USERNAME");
     private static final String ACCESS_KEY = System.getenv("BROWSERSTACK_ACCESS_KEY");
     private static final String URL = "http://hub-cloud.browserstack.com/wd/hub";
 
+    @BeforeSuite(alwaysRun = true)
+    public void before() throws Exception {
+        local = new Local();
+        Map<String, String> bsLocalArgs = new HashMap<>();
+        bsLocalArgs.put("key", ACCESS_KEY);
+        local.start(bsLocalArgs);
+        System.out.println("Local testing connection established...");
+    }
+
     @BeforeMethod(alwaysRun = true)
     @Parameters({"config", "capability"})
     public void setup(String configFile, String capability, Method m) throws MalformedURLException {
         JsonPath jsonPath = JsonPath.from(new File("src/test/resources/web/config/" + configFile + ".json"));
-        Map<String, String> capabilitiesMap = new HashMap<>();
         capabilitiesMap.putAll(jsonPath.getMap("commonCapabilities"));
         capabilitiesMap.putAll(jsonPath.getMap("capabilities[" + capability + "]"));
         if (capabilitiesMap.get("device") == null) {
@@ -46,28 +49,33 @@ public class ParallelTest {
         }
         capabilitiesMap.put("browserstack.user", USERNAME);
         capabilitiesMap.put("browserstack.key", ACCESS_KEY);
+        capabilitiesMap.put("browserstack.local", "true");
         driverThread.set(new RemoteWebDriver(new URL(URL), new DesiredCapabilities(capabilitiesMap)));
     }
 
     @Test
-    public void loginBStackDemo() {
+    public void openLocalWebPage() {
         WebDriver driver = driverThread.get();
-        WebDriverWait wait = new WebDriverWait(driver, 10);
-        driver.get("https://bstackdemo.com");
-        wait.until(elementToBeClickable(By.id("signin"))).click();
-        wait.until(elementToBeClickable(By.cssSelector("#username input"))).sendKeys("fav_user" + TAB);
-        driver.findElement(By.cssSelector("#password input")).sendKeys("testingisfun99" + TAB);
-        driver.findElement(By.id("login-btn")).click();
-        String username = wait.until(presenceOfElementLocated(By.className("username"))).getText();
-        Assert.assertEquals(username, "fav_user", "Incorrect username");
+        if (capabilitiesMap.getOrDefault("device", "none").contains("iPhone")) {
+            driver.get("http://bs-local.com:8000");
+        } else {
+            driver.get("http://localhost:8000");
+        }
+        assertEquals(driver.getTitle(), "Local Server", "Incorrect title");
     }
 
     @AfterMethod(alwaysRun = true)
-    public void teardown(Method m) {
+    public void closeDriver() {
         JavascriptExecutor js = (JavascriptExecutor) driverThread.get();
         js.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"passed\"}}");
         driverThread.get().quit();
         driverThread.remove();
+    }
+
+    @AfterSuite(alwaysRun = true)
+    public void closeLocal() throws Exception {
+        local.stop();
+        System.out.println("Local testing connection established...");
     }
 
 }

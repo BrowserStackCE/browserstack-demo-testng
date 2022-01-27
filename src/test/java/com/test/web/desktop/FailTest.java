@@ -1,4 +1,4 @@
-package com.test.web;
+package com.test.web.desktop;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -18,13 +18,15 @@ import java.net.URL;
 import static org.openqa.selenium.Keys.TAB;
 import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
 import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated;
+import static org.testng.Assert.assertNotEquals;
 
 public class FailTest {
+
+    private WebDriver driver;
 
     private static final String USERNAME = System.getenv("BROWSERSTACK_USERNAME");
     private static final String ACCESS_KEY = System.getenv("BROWSERSTACK_ACCESS_KEY");
     private static final String URL = "http://hub-cloud.browserstack.com/wd/hub";
-    private WebDriver driver;
 
     @BeforeMethod(alwaysRun = true)
     public void setup(Method m) throws MalformedURLException {
@@ -47,7 +49,7 @@ public class FailTest {
     }
 
     @Test
-    public void loginBStackDemo() {
+    public void bStackDemoLogin() {
         WebDriverWait wait = new WebDriverWait(driver, 10);
         driver.get("https://bstackdemo.com");
         wait.until(elementToBeClickable(By.id("signin"))).click();
@@ -55,13 +57,15 @@ public class FailTest {
         driver.findElement(By.cssSelector("#password input")).sendKeys("testingisfun99" + TAB);
         driver.findElement(By.id("login-btn")).click();
         String username = wait.until(presenceOfElementLocated(By.className("username"))).getText();
-        Assert.assertEquals(username, "incorrect_user", "Incorrect username");
+        assertNotEquals(username, "fav_user", "Incorrect username");
     }
 
     @AfterMethod(alwaysRun = true)
-    public void teardown(Method m) {
+    public void closeDriver(ITestResult tr) {
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"failed\", \"reason\": \"" + m.getName() + " failed\"}}");
+        String reason = tr.getThrowable().getMessage().split("\\n")[0].replaceAll("[\\\\{}\"]", "");
+        System.out.println(reason);
+        js.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"failed\", \"reason\": \"" + reason + "\"}}");
         driver.quit();
     }
 

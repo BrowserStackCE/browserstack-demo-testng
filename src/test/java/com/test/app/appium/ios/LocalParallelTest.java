@@ -32,12 +32,11 @@ import static org.testng.Assert.assertEquals;
 public class LocalParallelTest {
 
     private static final ThreadLocal<MobileDriver<MobileElement>> driverThread = new ThreadLocal<>();
+    private Local local;
 
     private static final String USERNAME = System.getenv("BROWSERSTACK_USERNAME");
     private static final String ACCESS_KEY = System.getenv("BROWSERSTACK_ACCESS_KEY");
     private static final String URL = "http://hub-cloud.browserstack.com/wd/hub";
-
-    private Local local;
 
     @BeforeSuite(alwaysRun = true)
     public void setupApp() throws Exception {

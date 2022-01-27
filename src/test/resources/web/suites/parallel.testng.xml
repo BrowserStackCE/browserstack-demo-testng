@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Parallel Suite">
-    <test name="Parallel Test 1">
+    <test name="Parallel Test 0">
         <parameter name="capability" value="0"/>
         <classes>
-            <class name="com.test.web.ParallelTest"/>
+            <class name="com.test.web.desktop.ParallelTest"/>
+        </classes>
+    </test>
+    <test name="Parallel Test 1">
+        <parameter name="capability" value="1"/>
+        <classes>
+            <class name="com.test.web.desktop.ParallelTest"/>
         </classes>
     </test>
     <test name="Parallel Test 2">
-        <parameter name="capability" value="1"/>
+        <parameter name="capability" value="2"/>
         <classes>
-            <class name="com.test.web.ParallelTest"/>
+            <class name="com.test.web.desktop.ParallelTest"/>
         </classes>
     </test>
     <test name="Parallel Test 3">
-        <parameter name="capability" value="2"/>
+        <parameter name="capability" value="3"/>
         <classes>
-            <class name="com.test.web.ParallelTest"/>
+            <class name="com.test.web.desktop.ParallelTest"/>
         </classes>
     </test>
     <test name="Parallel Test 4">
         <parameter name="capability" value="3"/>
         <classes>
-            <class name="com.test.web.ParallelTest"/>
-        </classes>
-    </test>
-    <test name="Parallel Test 5">
-        <parameter name="capability" value="4"/>
-        <classes>
-            <class name="com.test.web.ParallelTest"/>
+            <class name="com.test.web.desktop.ParallelTest"/>
         </classes>
     </test>
 </suite>

@@ -12,73 +12,269 @@ Test execution using [TestNG](http://testng.org) on BrowserStack.
 ### Setup
 
 - Clone the repo
-- Install dependencies `mvn compile`
+- Install dependencies
+  ```
+  mvn compile
+  ```
 - Update the environment variables with your [BrowserStack Username and Access Key](https://www.browserstack.com/accounts/settings)
 
 ### Running your tests
 
-#### Automate
+### Automate
 
-- To run a single test, run `mvn -P single test`
-- To run a local test, run `mvn -P local test`
-- To run parallel tests, run `mvn -P parallel test`
-- To run parallel tests on mobile browsers, run `mvn -P mobile test`
-- To run parallel local tests, run `mvn -P local-parallel test`
-- To run a failed test, run `mvn -P fail test`
+#### Desktop browsers
 
-#### App-Automate
+- Run a single test.
+  ```
+  mvn -P desktop-single test
+  ```
+- Run parallel tests.
+  ```
+  mvn -P desktop-parallel test
+  ```
+- Run a failed test.
+  ```
+  mvn -P desktop-fail test
+  ```
+- Run a local test.
+  ```
+  mvn -P desktop-local test
+  ```
+- Run parallel local tests.
+  ```
+  mvn -P desktop-local-parallel test
+  ```
 
-- To run a single test, run `mvn -P appium-single test`
-- To run a local test, run `mvn -P appium-local test`
-- To run parallel tests, run `mvn -P appium-parallel test`
-- To run a failed test, run `mvn -P appium-fail test`
-- To run an Espresso test, run `mvn -P espresso test`
-- To run a XCUI test, run `mvn -P xcuitest test`
+#### Mobile browsers
+
+- Run a single test.
+  ```
+  mvn -P mobile-single test
+  ```
+- Run parallel tests.
+  ```
+  mvn -P mobile-parallel test
+  ```
+- Run a failed test.
+  ```
+  mvn -P mobile-fail test
+  ```
+- Run a local test.
+  ```
+  mvn -P mobile-local test
+  ```
+- Run parallel local tests.
+  ```
+  mvn -P mobile-local-parallel test
+  ```
+
+### App-Automate
+
+#### Android devices
+
+- Run a single test.
+  ```
+  mvn -P android-single test
+  ```
+- Run parallel tests.
+  ```
+  mvn -P android-parallel test
+  ```
+- Run a failed test.
+  ```
+  mvn -P android-failed test
+  ```
+- Run a local test.
+  ```
+  mvn -P android-local test
+  ```
+- Run parallel local tests.
+  ```
+  mvn -P android-local-parallel test
+  ```
+
+#### iOS devices
+
+- Run a single test.
+  ```
+  mvn -P ios-single test
+  ```
+- Run parallel tests.
+  ```
+  mvn -P ios-parallel test
+  ```
+- Run a failed test.
+  ```
+  mvn -P ios-failed test
+  ```
+- Run a local test.
+  ```
+  mvn -P ios-local test
+  ```
+- Run parallel local tests.
+  ```
+  mvn -P ios-local-parallel test
+  ```
+
+#### Espresso tests
+
+- Run an Espresso test.
+  ```
+  mvn -P espresso test
+  ```
+
+#### XCUI tests
+
+- Run a XCUI test.
+  ```
+  mvn -P xcuitest test
+  ```
 
 ## Using Gradle
 
 ### Setup
 
-* Clone the repo
-* Install dependencies `./gradlew build`
-* Update the environment variables with your [BrowserStack Username and Access Key](https://www.browserstack.com/accounts/settings)
+- Clone the repo
+- Install dependencies 
+  ```
+  ./gradlew build
+  ```
+- Update the environment variables with your [BrowserStack Username and Access Key](https://www.browserstack.com/accounts/settings)
 
 ### Running your tests
 
-#### Automate
+### Automate
 
-- To run a single test, run `./gradlew single`
-- To run a local test, run `./gradlew local`
-- To run parallel tests, run `./gradlew parallel`
-- To run parallel tests on mobile browsers, run `./gradlew mobile`
-- To run parallel local tests, run `./gradlew local-parallel`
-- To run a failed test, run `./gradlew fail`
+#### Desktop browsers
 
-#### App-Automate
+- Run a single test
+  ```
+  ./gradlew desktop-single
+  ```
+- Run parallel tests
+  ```
+  ./gradlew desktop-parallel
+  ```
+- Run a failed test
+  ```
+  ./gradlew desktop-fail
+  ```
+- Run a local test
+  ```
+  ./gradlew desktop-local
+  ```
+- Run parallel local tests
+  ```
+  ./gradlew desktop-local-parallel
+  ```
 
-- To run a single test, run `./gradlew appium-single`
-- To run a local test, run `./gradlew appium-local`
-- To run parallel tests, run `./gradlew appium-parallel`
-- To run a failed test, run `./gradlew appium-fail`
-- To run an Espresso test, run `./gradlew espresso`
-- To run a XCUI test, run `./gradlew xcuitest`
+#### Mobile browsers
+
+- Run a single test
+  ```
+  ./gradlew mobile-single
+  ```
+- Run parallel tests
+  ```
+  ./gradlew mobile-parallel
+  ```
+- Run a failed test
+  ```
+  ./gradlew mobile-fail
+  ```
+- Run a local test
+  ```
+  ./gradlew mobile-local
+  ```
+- Run parallel local tests
+  ```
+  ./gradlew mobile-local-parallel
+  ```
+
+### App-Automate
+
+#### Android devices
+
+- Run a single test
+  ```
+  ./gradlew android-single
+  ```
+- Run parallel tests
+  ```
+  ./gradlew android-parallel
+  ```
+- Run a failed test
+  ```
+  ./gradlew android-fail
+  ```
+- Run a local test
+  ```
+  ./gradlew android-local
+  ```
+- Run parallel local tests
+  ```
+  ./gradlew android-local-parallel
+  ```
+
+#### iOS devices
+
+- Run a single test
+  ```
+  ./gradlew ios-single
+  ```
+- Run parallel tests
+  ```
+  ./gradlew ios-parallel
+  ```
+- Run a failed test
+  ```
+  ./gradlew ios-fail
+  ```
+- Run a local test
+  ```
+  ./gradlew ios-local
+  ```
+- Run parallel local tests
+  ```
+  ./gradlew ios-local-parallel
+  ```
+
+#### Espresso tests
+
+- Run an Espresso test
+  ```
+  ./gradlew espresso
+  ```
+  
+#### XCUI tests
+
+- Run a XCUI test
+  ```
+  ./gradlew ios-local-parallel
+  ```
 
 ## Notes
 - You can view your Automate test results on the [BrowserStack Automate dashboard](https://automate.browserstack.com/).
 - You can view your App-Automate test results on the [BrowserStack App-Automate dashboard](https://app-automate.browserstack.com/).
-- To start a locally hosted website, run `mvn -P start-server compile exec:java`. Website will open on `localhost:8000`.
+- To start a locally hosted website. Website will open on `localhost:8000`.
+  ```
+  mvn -P start-server compile exec:java
+  ```
 - To use specific number of threads:
   - For Maven use `-Dthreads=<thread-count>`. Example `-Dthreads=3`
   - For Gradle use `-Pthreads=<thread-count>`. Example `-Pthreads=3`
-- Apps used to test using Appium:
-  - Demo App: [WikipediaSample.apk](https://www.browserstack.com/app-automate/sample-apps/android/WikipediaSample.apk)
-  - Local App: [LocalSample.apk](https://www.browserstack.com/app-automate/sample-apps/android/LocalSample.apk)
+- Apps used to test on Android:
+    - Demo App: [WikipediaSample.apk](https://www.browserstack.com/app-automate/sample-apps/android/WikipediaSample.apk)
+    - Local App: [LocalSample.apk](https://www.browserstack.com/app-automate/sample-apps/android/LocalSample.apk)
+- Apps used to test on iOS:
+    - Demo App: [BStackSampleApp.ipa](https://www.browserstack.com/app-automate/sample-apps/ios/BStackSampleApp.ipa)
+    - Local App: [LocalSample.ipa](https://www.browserstack.com/app-automate/sample-apps/ios/LocalSample.ipa)
 - Resources used to test using Espresso:
-  - App: [Calculator.apk](https://www.browserstack.com/app-automate/sample-apps/android/Calculator.apk)
-  - Test-suite: [CalculatorTest.apk](https://www.browserstack.com/app-automate/sample-apps/android/CalculatorTest.apk)
+    - App: [Calculator.apk](https://www.browserstack.com/app-automate/sample-apps/android/Calculator.apk)
+    - Test-suite: [CalculatorTest.apk](https://www.browserstack.com/app-automate/sample-apps/android/CalculatorTest.apk)
 - Resources used to test using XCUITest:
-  - App: [BrowserStack-SampleApp.ipa](https://www.browserstack.com/app-automate/sample-apps/ios/BrowserStack-SampleApp.ipa)
-  - Test-suite: [BrowserStack-SampleXCUITest.zip](https://www.browserstack.com/app-automate/sample-apps/ios/BrowserStack-SampleXCUITest.zip)
+    - App: [BrowserStack-SampleApp.ipa](https://www.browserstack.com/app-automate/sample-apps/ios/BrowserStack-SampleApp.ipa)
+    - Test-suite: [BrowserStack-SampleXCUITest.zip](https://www.browserstack.com/app-automate/sample-apps/ios/BrowserStack-SampleXCUITest.zip)
 - Export the environment variables for the Username and Access Key of your BrowserStack account.
   ```sh
   export BROWSERSTACK_USERNAME=<browserstack-username> && export BROWSERSTACK_ACCESS_KEY=<browserstack-access-key>
