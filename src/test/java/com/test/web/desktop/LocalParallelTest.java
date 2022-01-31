@@ -75,7 +75,7 @@ public class LocalParallelTest {
     @AfterSuite(alwaysRun = true)
     public void closeLocal() throws Exception {
         local.stop();
-        System.out.println("Local testing connection established...");
+        System.out.println("Local testing connection terminated...");
     }
 
 }
