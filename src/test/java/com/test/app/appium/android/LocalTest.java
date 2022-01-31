@@ -94,7 +94,7 @@ public class LocalTest {
     @AfterMethod(alwaysRun = true)
     public void closeDriver() {
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"passed\", \"reason\": \"Local testing passed\"}}");
+        js.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"passed\"");
         driver.quit();
     }
 
