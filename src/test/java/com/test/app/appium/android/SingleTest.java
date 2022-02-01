@@ -85,7 +85,6 @@ public class SingleTest {
         Wait<MobileDriver<MobileElement>> wait = new FluentWait<>(driver)
                 .withTimeout(Duration.ofSeconds(10))
                 .ignoring(NotFoundException.class);
-        driver.rotate(ScreenOrientation.LANDSCAPE);
         driver.findElementByAccessibilityId("Search Wikipedia").click();
         MobileElement insertTextElement = wait.until(d -> d.findElementById("org.wikipedia.alpha:id/search_src_text"));
         insertTextElement.sendKeys("BrowserStack");
