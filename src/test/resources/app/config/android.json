@@ -1,0 +1,30 @@
+{
+  "commonCapabilities": {
+    "project": "BrowserStack Java TestNG",
+    "build": "Demo",
+    "browserstack.debug": true,
+    "browserstack.networkLogs": true
+  },
+  "capabilities": [
+    {
+      "device": "Google Pixel 3",
+      "os_version": "9.0"
+    },
+    {
+      "device": "OnePlus 6T",
+      "os_version": "9.0"
+    },
+    {
+      "device": "Google Pixel 2",
+      "os_version": "9.0"
+    },
+    {
+      "device": "Samsung Galaxy S10e",
+      "os_version": "9.0"
+    },
+    {
+      "device": "Samsung Galaxy A10",
+      "os_version": "9.0"
+    }
+  ]
+}

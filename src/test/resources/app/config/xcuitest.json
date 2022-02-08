@@ -1,0 +1,10 @@
+{
+  "app": "SampleApp",
+  "testSuite": "SampleTest",
+  "devices": [
+    "iPhone 8-11",
+    "iPhone 8 Plus-11"
+  ],
+  "project": "SampleBuild",
+  "deviceLogs": true
+}
