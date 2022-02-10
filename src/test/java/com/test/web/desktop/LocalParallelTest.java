@@ -25,7 +25,7 @@ public class LocalParallelTest {
 
     private static final String USERNAME = System.getenv("BROWSERSTACK_USERNAME");
     private static final String ACCESS_KEY = System.getenv("BROWSERSTACK_ACCESS_KEY");
-    private static final String URL = "https://hub-cloud.browserstack.com/wd/hub";
+    private static final String HUB_URL = "https://hub-cloud.browserstack.com/wd/hub";
 
     @BeforeSuite(alwaysRun = true)
     public void before() throws Exception {
@@ -51,7 +51,7 @@ public class LocalParallelTest {
         capabilitiesMap.put("browserstack.user", USERNAME);
         capabilitiesMap.put("browserstack.key", ACCESS_KEY);
         capabilitiesMap.put("browserstack.local", "true");
-        driverThread.set(new RemoteWebDriver(new URL(URL), new DesiredCapabilities(capabilitiesMap)));
+        driverThread.set(new RemoteWebDriver(new URL(HUB_URL), new DesiredCapabilities(capabilitiesMap)));
     }
 
     @Test

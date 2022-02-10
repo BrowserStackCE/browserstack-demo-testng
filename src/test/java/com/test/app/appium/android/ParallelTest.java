@@ -33,7 +33,7 @@ public class ParallelTest {
 
     private static final String USERNAME = System.getenv("BROWSERSTACK_USERNAME");
     private static final String ACCESS_KEY = System.getenv("BROWSERSTACK_ACCESS_KEY");
-    private static final String URL = "https://hub-cloud.browserstack.com/wd/hub";
+    private static final String HUB_URL = "https://hub-cloud.browserstack.com/wd/hub";
 
     @BeforeSuite(alwaysRun = true)
     public void setupApp() {
@@ -73,7 +73,7 @@ public class ParallelTest {
         capabilitiesMap.put("app", "AndroidDemoApp");
         capabilitiesMap.put("browserstack.user", USERNAME);
         capabilitiesMap.put("browserstack.key", ACCESS_KEY);
-        driverThread.set(new AndroidDriver<>(new URL(URL), new DesiredCapabilities(capabilitiesMap)));
+        driverThread.set(new AndroidDriver<>(new URL(HUB_URL), new DesiredCapabilities(capabilitiesMap)));
     }
 
     @Test
