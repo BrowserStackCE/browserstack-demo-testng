@@ -76,6 +76,7 @@ public class LocalParallelTest {
         Map<String, String> capabilitiesMap = new HashMap<>();
         capabilitiesMap.putAll(jsonPath.getMap("commonCapabilities"));
         capabilitiesMap.putAll(jsonPath.getMap("capabilities[" + capability + "]"));
+        capabilitiesMap.put("build", System.getenv("BROWSERSTACK_BUILD_NAME"));
         capabilitiesMap.put("name", m.getName() + " - " + capabilitiesMap.get("device"));
         capabilitiesMap.put("app", "iOSLocalApp");
         capabilitiesMap.put("browserstack.user", USERNAME);

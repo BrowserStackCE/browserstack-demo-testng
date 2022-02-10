@@ -65,7 +65,7 @@ public class FailTest {
     public void setup(Method m) throws MalformedURLException {
         DesiredCapabilities caps = new DesiredCapabilities();
         caps.setCapability("project", "BrowserStack Java TestNG");
-        caps.setCapability("build", "Demo");
+        caps.setCapability("build", System.getenv("BROWSERSTACK_BUILD_NAME"));
         caps.setCapability("name", m.getName() + " - Google Pixel 3");
 
         caps.setCapability("device", "Google Pixel 3");

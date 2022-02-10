@@ -37,7 +37,7 @@ public class LocalTest {
     public void setupDriver(Method m) throws MalformedURLException {
         DesiredCapabilities caps = new DesiredCapabilities();
         caps.setCapability("project", "BrowserStack Java TestNG");
-        caps.setCapability("build", "Demo");
+        caps.setCapability("build", System.getenv("BROWSERSTACK_BUILD_NAME"));
         caps.setCapability("name", m.getName() + " - Chrome latest");
 
         caps.setCapability("os", "Windows");

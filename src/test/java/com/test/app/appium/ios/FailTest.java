@@ -61,7 +61,7 @@ public class FailTest {
     public void setup(Method m) throws MalformedURLException {
         DesiredCapabilities caps = new DesiredCapabilities();
         caps.setCapability("project", "BrowserStack Java TestNG");
-        caps.setCapability("build", "Demo");
+        caps.setCapability("build", System.getenv("BROWSERSTACK_BUILD_NAME"));
         caps.setCapability("name", m.getName() + " - iPhone 11 Pro");
 
         caps.setCapability("device", "iPhone 11 Pro");
