@@ -4,12 +4,7 @@ pipeline {
 		maven 'Maven 3.8.1'
 	}
 	stages {
-	    stage ('Checkout') {
-			steps {
-				git branch: 'jenkins', url: 'https://github.com/BrowserStackCE/browserstack-demo-testng'
-			}
-		}
-	    stage ('Test') {
+	    stage ('Initiate tests on BrowserStack') {
 	        steps {
     			browserstack(credentialsId: "${credentials}") {
                     sh "mvn clean -P ${configuration} test"
