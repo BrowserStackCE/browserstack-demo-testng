@@ -28,7 +28,7 @@ public class SingleTest {
 
     private static final String USERNAME = System.getenv("BROWSERSTACK_USERNAME");
     private static final String ACCESS_KEY = System.getenv("BROWSERSTACK_ACCESS_KEY");
-    private static final String URL = "https://hub-cloud.browserstack.com/wd/hub";
+    private static final String HUB_URL = "https://hub-cloud.browserstack.com/wd/hub";
 
     @BeforeSuite(alwaysRun = true)
     public void setupApp() {
@@ -70,9 +70,8 @@ public class SingleTest {
         caps.setCapability("browserstack.user", USERNAME);
         caps.setCapability("browserstack.key", ACCESS_KEY);
         caps.setCapability("browserstack.debug", true);
-        caps.setCapability("browserstack.networkLogs", true);
 
-        driver = new IOSDriver<>(new URL(URL), caps);
+        driver = new IOSDriver<>(new URL(HUB_URL), caps);
     }
 
     @Test
