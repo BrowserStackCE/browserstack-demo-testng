@@ -28,7 +28,7 @@
     <test name="iOS Local Test 5">
         <parameter name="capability" value="4"/>
         <classes>
-            <class name="com.test.app.appium.ios.ParallelTest"/>
+            <class name="com.test.app.appium.ios.LocalParallelTest"/>
         </classes>
     </test>
 </suite>
