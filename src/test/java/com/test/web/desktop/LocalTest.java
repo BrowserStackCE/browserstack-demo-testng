@@ -1,6 +1,7 @@
 package com.test.web.desktop;
 
 import com.browserstack.local.Local;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -17,12 +18,11 @@ import static org.testng.Assert.assertEquals;
 
 public class LocalTest {
 
-    private WebDriver driver;
-    private Local local;
-
     private static final String USERNAME = System.getenv("BROWSERSTACK_USERNAME");
     private static final String ACCESS_KEY = System.getenv("BROWSERSTACK_ACCESS_KEY");
     private static final String HUB_URL = "https://hub-cloud.browserstack.com/wd/hub";
+    private WebDriver driver;
+    private Local local;
 
     @BeforeSuite(alwaysRun = true)
     public void setupLocal() throws Exception {
@@ -56,8 +56,8 @@ public class LocalTest {
 
     @Test
     public void openLocalWebPage() {
-        driver.get("http://localhost:8000");
-        assertEquals(driver.getTitle(), "Local Server", "Incorrect title");
+        driver.get("http://bs-local.com:45691/check");
+        assertEquals(driver.findElement(By.tagName("body")).getText(), "Up and running", "Local connection not found");
     }
 
     @AfterMethod(alwaysRun = true)

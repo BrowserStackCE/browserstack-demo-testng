@@ -2,6 +2,7 @@ package com.test.web.desktop;
 
 import com.browserstack.local.Local;
 import io.restassured.path.json.JsonPath;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -57,12 +58,8 @@ public class LocalParallelTest {
     @Test
     public void openLocalWebPage() {
         WebDriver driver = driverThread.get();
-        if (capabilitiesMap.getOrDefault("device", "none").contains("iPhone")) {
-            driver.get("http://bs-local.com:8000");
-        } else {
-            driver.get("http://localhost:8000");
-        }
-        assertEquals(driver.getTitle(), "Local Server", "Incorrect title");
+        driver.get("http://bs-local.com:45691/check");
+        assertEquals(driver.findElement(By.tagName("body")).getText(), "Up and running", "Local connection not found");
     }
 
     @AfterMethod(alwaysRun = true)
