@@ -2,8 +2,8 @@
 
 | Product | Status |
 | --- | --- |
-| Automate | [![BrowserStack Status](https://automate.browserstack.com/badge.svg?badge_key=VVJsYk9IdWRoSG5TQldSbTE4elZZenlTS0V3S3hpWVRxTG9qWGdQVW5BVT0tLUFyV29QSTMwa1NiUkVmVWFIeUFoM2c9PQ==--36aaf62782c041f259b2e865d0364319ebc0947a)](https://automate.browserstack.com/public-build/VVJsYk9IdWRoSG5TQldSbTE4elZZenlTS0V3S3hpWVRxTG9qWGdQVW5BVT0tLUFyV29QSTMwa1NiUkVmVWFIeUFoM2c9PQ==--36aaf62782c041f259b2e865d0364319ebc0947a) |
-| App-Automate | [![BrowserStack Status](https://app-automate.browserstack.com/badge.svg?badge_key=czEwd3UxdlA0UkFuY0NpZ2h0eVI4V25qbTBwL1drbGg4My9rdUxneUdOYz0tLTJZT0NwVTlhVXVHbEROenhIamVFQlE9PQ==--e893df98cc09afe78a93a9b2ae4fb36a6495ac52)](https://app-automate.browserstack.com/public-build/czEwd3UxdlA0UkFuY0NpZ2h0eVI4V25qbTBwL1drbGg4My9rdUxneUdOYz0tLTJZT0NwVTlhVXVHbEROenhIamVFQlE9PQ==--e893df98cc09afe78a93a9b2ae4fb36a6495ac52) |
+| Automate | [![BrowserStack Status](https://automate.browserstack.com/badge.svg?badge_key=dHFiQ2xsZ1RDVUs4QXpYUmJFTEs3M1RiRVJTNGNnSHFGZGw3SnpFVXU2OD0tLTZacmdhanpLL01JaFJocUFGU3JJNkE9PQ==--f3ba05658718ec70bb69eee413997ddf1b8c2b0b)](https://automate.browserstack.com/public-build/dHFiQ2xsZ1RDVUs4QXpYUmJFTEs3M1RiRVJTNGNnSHFGZGw3SnpFVXU2OD0tLTZacmdhanpLL01JaFJocUFGU3JJNkE9PQ==--f3ba05658718ec70bb69eee413997ddf1b8c2b0b) |
+| App-Automate | [![BrowserStack Status](https://app-automate.browserstack.com/badge.svg?badge_key=WHRFK0I3eXlzalBRYzRNU0lKajFCUnNTclFLcllHbWZoa0hSSWZ4ZzhnQT0tLXZ2UFozbTJTZXBEUnY2MVBaa0dZM0E9PQ==--7a67691ee07e1db565ef4902b0e260b2f3a5f963)](https://app-automate.browserstack.com/public-build/WHRFK0I3eXlzalBRYzRNU0lKajFCUnNTclFLcllHbWZoa0hSSWZ4ZzhnQT0tLXZ2UFozbTJTZXBEUnY2MVBaa0dZM0E9PQ==--7a67691ee07e1db565ef4902b0e260b2f3a5f963) |
 
 Test execution using [TestNG](http://testng.org) on BrowserStack.
 

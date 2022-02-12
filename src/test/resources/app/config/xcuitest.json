@@ -5,6 +5,6 @@
     "iPhone 8-11",
     "iPhone 8 Plus-11"
   ],
-  "project": "SampleBuild",
+  "project": "BrowserStack Demo TestNG",
   "deviceLogs": true
 }

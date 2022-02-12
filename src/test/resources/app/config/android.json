@@ -1,6 +1,6 @@
 {
   "commonCapabilities": {
-    "project": "BrowserStack Java TestNG",
+    "project": "BrowserStack Demo TestNG",
     "browserstack.debug": true
   },
   "capabilities": [
