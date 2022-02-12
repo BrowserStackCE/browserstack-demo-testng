@@ -256,10 +256,6 @@ Test execution using [TestNG](http://testng.org) on BrowserStack.
 ## Notes
 - You can view your Automate test results on the [BrowserStack Automate dashboard](https://automate.browserstack.com/).
 - You can view your App-Automate test results on the [BrowserStack App-Automate dashboard](https://app-automate.browserstack.com/).
-- To start a locally hosted website. Website will open on `localhost:8000`.
-  ```
-  mvn -P start-server compile exec:java
-  ```
 - To use specific number of threads:
   - For Maven use `-Dthreads=<thread-count>`. Example `-Dthreads=3`
   - For Gradle use `-Pthreads=<thread-count>`. Example `-Pthreads=3`
