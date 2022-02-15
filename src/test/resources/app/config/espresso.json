@@ -6,5 +6,6 @@
     "Google Pixel 3-9.0"
   ],
   "project": "BrowserStack Demo TestNG",
-  "deviceLogs": true
+  "deviceLogs": true,
+  "networkLogs": true
 }
