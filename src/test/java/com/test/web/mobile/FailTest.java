@@ -41,6 +41,7 @@ public class FailTest {
         caps.setCapability("browserstack.user", USERNAME);
         caps.setCapability("browserstack.key", ACCESS_KEY);
         caps.setCapability("browserstack.debug", true);
+        caps.setCapability("browserstack.networkLogs", true);
 
         driver = new RemoteWebDriver(new URL(HUB_URL), caps);
     }

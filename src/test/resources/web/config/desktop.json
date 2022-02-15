@@ -2,7 +2,8 @@
   "commonCapabilities": {
     "project": "BrowserStack Demo TestNG",
     "build": "Demo",
-    "browserstack.debug": true
+    "browserstack.debug": true,
+    "browserstack.networkLogs": true
   },
   "capabilities": [
     {
