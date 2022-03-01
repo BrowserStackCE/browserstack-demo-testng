@@ -1,6 +1,6 @@
 group = 'com.browserstack'
 version = '1.0'
-description = 'browserstack-java-testng'
+description = 'browserstack-demo-testng'
 
 apply plugin: 'java'
 
