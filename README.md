@@ -82,7 +82,7 @@ Test execution using [TestNG](http://testng.org) on BrowserStack.
   ```
 - Run a failed test.
   ```
-  mvn -P android-failed test
+  mvn -P android-fail test
   ```
 - Run a local test.
   ```
@@ -105,7 +105,7 @@ Test execution using [TestNG](http://testng.org) on BrowserStack.
   ```
 - Run a failed test.
   ```
-  mvn -P ios-failed test
+  mvn -P ios-fail test
   ```
 - Run a local test.
   ```

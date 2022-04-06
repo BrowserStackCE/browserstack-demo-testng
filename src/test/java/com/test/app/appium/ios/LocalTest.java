@@ -72,10 +72,10 @@ public class LocalTest {
         DesiredCapabilities caps = new DesiredCapabilities();
         caps.setCapability("project", "BrowserStack Demo TestNG");
         caps.setCapability("build", "Demo");
-        caps.setCapability("name", m.getName() + " - iPhone 11 Pro");
+        caps.setCapability("name", m.getName() + " - iPhone 12 Pro");
 
-        caps.setCapability("device", "iPhone 11 Pro");
-        caps.setCapability("os_version", "13");
+        caps.setCapability("device", "iPhone 12 Pro");
+        caps.setCapability("os_version", "14");
         caps.setCapability("app", "iOSLocalApp");
 
         caps.setCapability("browserstack.user", USERNAME);
