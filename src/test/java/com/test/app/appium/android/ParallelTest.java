@@ -1,11 +1,9 @@
 package com.test.app.appium.android;
 
+import com.utils.AppUtils;
 import io.appium.java_client.MobileDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
-import io.restassured.authentication.PreemptiveBasicAuthScheme;
-import io.restassured.builder.RequestSpecBuilder;
-import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.path.json.JsonPath;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NotFoundException;
@@ -23,7 +21,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static io.restassured.RestAssured.*;
 import static java.util.stream.Collectors.toList;
 import static org.testng.Assert.assertTrue;
 
@@ -37,28 +34,7 @@ public class ParallelTest {
 
     @BeforeSuite(alwaysRun = true)
     public void setupApp() {
-        PreemptiveBasicAuthScheme authenticationScheme = new PreemptiveBasicAuthScheme();
-        authenticationScheme.setUserName(USERNAME);
-        authenticationScheme.setPassword(ACCESS_KEY);
-        requestSpecification = new RequestSpecBuilder()
-                .setBaseUri("https://api-cloud.browserstack.com")
-                .setBasePath("app-automate")
-                .setAuth(authenticationScheme)
-                .build();
-        responseSpecification = new ResponseSpecBuilder()
-                .expectStatusCode(200)
-                .build();
-        List<String> customIds = get("recent_apps").jsonPath().getList("custom_id");
-        if (customIds == null || !customIds.contains("AndroidDemoApp")) {
-            System.out.println("Uploading app...");
-            given()
-                    .header("Content-Type", "multipart/form-data")
-                    .multiPart("url", "https://www.browserstack.com/app-automate/sample-apps/android/WikipediaSample.apk", "text")
-                    .param("custom_id", "AndroidDemoApp")
-                    .post("upload");
-        } else {
-            System.out.println("Using previously uploaded app...");
-        }
+        AppUtils.uploadApp("AndroidDemoApp", "android/WikipediaSample.apk");
     }
 
     @BeforeMethod(alwaysRun = true)

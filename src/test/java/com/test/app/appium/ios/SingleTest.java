@@ -1,11 +1,9 @@
 package com.test.app.appium.ios;
 
+import com.utils.AppUtils;
 import io.appium.java_client.MobileDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.ios.IOSDriver;
-import io.restassured.authentication.PreemptiveBasicAuthScheme;
-import io.restassured.builder.RequestSpecBuilder;
-import io.restassured.builder.ResponseSpecBuilder;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -17,9 +15,7 @@ import org.testng.annotations.Test;
 import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.List;
 
-import static io.restassured.RestAssured.*;
 import static org.testng.Assert.assertEquals;
 
 public class SingleTest {
@@ -32,28 +28,7 @@ public class SingleTest {
 
     @BeforeSuite(alwaysRun = true)
     public void setupApp() {
-        PreemptiveBasicAuthScheme authenticationScheme = new PreemptiveBasicAuthScheme();
-        authenticationScheme.setUserName(USERNAME);
-        authenticationScheme.setPassword(ACCESS_KEY);
-        requestSpecification = new RequestSpecBuilder()
-                .setBaseUri("https://api-cloud.browserstack.com")
-                .setBasePath("app-automate")
-                .setAuth(authenticationScheme)
-                .build();
-        responseSpecification = new ResponseSpecBuilder()
-                .expectStatusCode(200)
-                .build();
-        List<String> customIds = get("recent_apps").jsonPath().getList("custom_id");
-        if (customIds == null || !customIds.contains("iOSDemoApp")) {
-            System.out.println("Uploading app...");
-            given()
-                    .header("Content-Type", "multipart/form-data")
-                    .multiPart("url", "https://www.browserstack.com/app-automate/sample-apps/ios/BStackSampleApp.ipa", "text")
-                    .param("custom_id", "iOSDemoApp")
-                    .post("upload");
-        } else {
-            System.out.println("Using previously uploaded app...");
-        }
+        AppUtils.uploadApp("iOSDemoApp", "ios/BStackSampleApp.ipa");
     }
 
     @BeforeMethod(alwaysRun = true)

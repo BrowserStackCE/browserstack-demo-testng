@@ -1,13 +1,11 @@
 package com.test.app.appium.ios;
 
-import com.browserstack.local.Local;
+import com.utils.AppUtils;
+import com.utils.LocalUtils;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.ios.IOSDriver;
-import io.restassured.authentication.PreemptiveBasicAuthScheme;
-import io.restassured.builder.RequestSpecBuilder;
-import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.path.json.JsonPath;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -23,50 +21,22 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-import static io.restassured.RestAssured.*;
 import static org.testng.Assert.assertEquals;
 
 public class LocalParallelTest {
 
     private static final ThreadLocal<MobileDriver<MobileElement>> driverThread = new ThreadLocal<>();
-    private Local local;
 
     private static final String USERNAME = System.getenv("BROWSERSTACK_USERNAME");
     private static final String ACCESS_KEY = System.getenv("BROWSERSTACK_ACCESS_KEY");
     private static final String HUB_URL = "https://hub-cloud.browserstack.com/wd/hub";
 
     @BeforeSuite(alwaysRun = true)
-    public void setupApp() throws Exception {
-        PreemptiveBasicAuthScheme authenticationScheme = new PreemptiveBasicAuthScheme();
-        authenticationScheme.setUserName(USERNAME);
-        authenticationScheme.setPassword(ACCESS_KEY);
-        requestSpecification = new RequestSpecBuilder()
-                .setBaseUri("https://api-cloud.browserstack.com")
-                .setBasePath("app-automate")
-                .setAuth(authenticationScheme)
-                .build();
-        responseSpecification = new ResponseSpecBuilder()
-                .expectStatusCode(200)
-                .build();
-        List<String> customIds = get("recent_apps").jsonPath().getList("custom_id");
-        if (customIds == null || !customIds.contains("iOSLocalApp")) {
-            System.out.println("Uploading app...");
-            given()
-                    .header("Content-Type", "multipart/form-data")
-                    .multiPart("url", "https://www.browserstack.com/app-automate/sample-apps/ios/LocalSample.ipa", "text")
-                    .param("custom_id", "iOSLocalApp")
-                    .post("upload");
-        } else {
-            System.out.println("Using previously uploaded app...");
-        }
-        local = new Local();
-        Map<String, String> options = new HashMap<>();
-        options.put("key", ACCESS_KEY);
-        local.start(options);
-        System.out.println("Local testing connection established...");
+    public void setupApp() {
+        AppUtils.uploadApp("iOSLocalApp", "ios/LocalSample.ipa");
+        LocalUtils.startLocal();
     }
 
     @BeforeMethod(alwaysRun = true)
@@ -108,8 +78,7 @@ public class LocalParallelTest {
 
     @AfterSuite(alwaysRun = true)
     public void closeLocal() throws Exception {
-        local.stop();
-        System.out.println("Local testing connection terminated...");
+        LocalUtils.stopLocal();
     }
 
 }

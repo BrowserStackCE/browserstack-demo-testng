@@ -1,6 +1,6 @@
 package com.test.web.mobile;
 
-import com.browserstack.local.Local;
+import com.utils.LocalUtils;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -10,27 +10,20 @@ import org.testng.annotations.*;
 import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
 
 import static org.testng.Assert.assertEquals;
 
 public class LocalTest {
 
     private WebDriver driver;
-    private Local local;
 
     private static final String USERNAME = System.getenv("BROWSERSTACK_USERNAME");
     private static final String ACCESS_KEY = System.getenv("BROWSERSTACK_ACCESS_KEY");
     private static final String HUB_URL = "https://hub-cloud.browserstack.com/wd/hub";
 
     @BeforeSuite(alwaysRun = true)
-    public void setupLocal() throws Exception {
-        local = new Local();
-        Map<String, String> bsLocalArgs = new HashMap<>();
-        bsLocalArgs.put("key", ACCESS_KEY);
-        local.start(bsLocalArgs);
-        System.out.println("Local testing connection established...");
+    public void setupLocal() {
+        LocalUtils.startLocal();
     }
 
     @BeforeMethod(alwaysRun = true)
@@ -66,9 +59,8 @@ public class LocalTest {
     }
 
     @AfterSuite(alwaysRun = true)
-    public void closeLocal() throws Exception {
-        local.stop();
-        System.out.println("Local testing connection terminated...");
+    public void closeLocal() {
+        LocalUtils.stopLocal();
     }
 
 }

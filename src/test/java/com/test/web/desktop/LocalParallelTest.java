@@ -1,6 +1,6 @@
 package com.test.web.desktop;
 
-import com.browserstack.local.Local;
+import com.utils.LocalUtils;
 import io.restassured.path.json.JsonPath;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -20,20 +20,16 @@ import static org.testng.Assert.assertEquals;
 public class LocalParallelTest {
 
     private static final ThreadLocal<WebDriver> driverThread = new ThreadLocal<>();
-    private final Map<String, String> capabilitiesMap = new HashMap<>();
-    private Local local;
 
     private static final String USERNAME = System.getenv("BROWSERSTACK_USERNAME");
     private static final String ACCESS_KEY = System.getenv("BROWSERSTACK_ACCESS_KEY");
     private static final String HUB_URL = "https://hub-cloud.browserstack.com/wd/hub";
 
+    private final Map<String, String> capabilitiesMap = new HashMap<>();
+
     @BeforeSuite(alwaysRun = true)
-    public void before() throws Exception {
-        local = new Local();
-        Map<String, String> bsLocalArgs = new HashMap<>();
-        bsLocalArgs.put("key", ACCESS_KEY);
-        local.start(bsLocalArgs);
-        System.out.println("Local testing connection established...");
+    public void before() {
+        LocalUtils.startLocal();
     }
 
     @BeforeMethod(alwaysRun = true)
@@ -73,9 +69,8 @@ public class LocalParallelTest {
     }
 
     @AfterSuite(alwaysRun = true)
-    public void closeLocal() throws Exception {
-        local.stop();
-        System.out.println("Local testing connection terminated...");
+    public void closeLocal() {
+        LocalUtils.stopLocal();
     }
 
 }
