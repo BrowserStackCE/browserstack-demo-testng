@@ -32,7 +32,7 @@ public final class AppUtils {
             System.out.println("Uploading app...");
             given()
                     .header("Content-Type", "multipart/form-data")
-                    .multiPart("url", "https://www.browserstack.com/app-automate/sample-apps/" + appPath, "text")
+                    .multiPart("url", "https://www.browserstack.com/app-automate/sample-apps/" + appPath)
                     .param("custom_id", customId)
                     .post("upload");
         } else {
