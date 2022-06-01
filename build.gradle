@@ -1,0 +1,229 @@
+group = 'com.browserstack'
+version = '1.0'
+description = 'browserstack-demo-testng'
+
+apply plugin: 'java'
+
+repositories {
+    mavenCentral()
+}
+
+sourceSets {
+    test.java.srcDirs = ['src/test/java']
+    test.resources.srcDirs = ['src/test/resources']
+}
+
+dependencies {
+    implementation 'io.appium:java-client:7.5.1'
+    implementation 'org.testng:testng:7.4.0'
+    implementation 'com.browserstack:browserstack-local-java:1.0.3'
+    implementation 'io.rest-assured:rest-assured:4.3.3'
+}
+
+tasks.register('desktop-single', Test) {
+    useTestNG()
+    include '**/desktop/SingleTest.class'
+    testLogging {
+        events "PASSED", "FAILED", "SKIPPED"
+    }
+}
+
+tasks.register('desktop-parallel', Test) {
+    useTestNG() {
+        suites 'src/test/resources/web/suites/parallel.testng.xml'
+        systemProperty 'config', 'desktop'
+        parallel project.property('parallel')
+        threadCount Integer.parseInt(project.property('threads'))
+    }
+    testLogging {
+        events "PASSED", "FAILED", "SKIPPED"
+    }
+}
+
+tasks.register('desktop-fail', Test) {
+    useTestNG()
+    include '**/desktop/FailTest.class'
+    testLogging {
+        events "PASSED", "FAILED", "SKIPPED"
+    }
+}
+
+tasks.register('desktop-local', Test) {
+    useTestNG()
+    include '**/desktop/LocalTest.class'
+    testLogging {
+        events "PASSED", "FAILED", "SKIPPED"
+    }
+}
+
+tasks.register('desktop-local-parallel', Test) {
+    useTestNG() {
+        suites 'src/test/resources/web/suites/local.testng.xml'
+        systemProperty 'config', 'desktop'
+        parallel project.property('parallel')
+        threadCount Integer.parseInt(project.property('threads'))
+    }
+    testLogging {
+        events "PASSED", "FAILED", "SKIPPED"
+    }
+}
+
+tasks.register('mobile-single', Test) {
+    useTestNG()
+    include '**/mobile/SingleTest.class'
+    testLogging {
+        events "PASSED", "FAILED", "SKIPPED"
+    }
+}
+
+tasks.register('mobile-parallel', Test) {
+    useTestNG() {
+        suites 'src/test/resources/web/suites/parallel.testng.xml'
+        systemProperty 'config', 'mobile'
+        parallel project.property('parallel')
+        threadCount Integer.parseInt(project.property('threads'))
+    }
+    testLogging {
+        events "PASSED", "FAILED", "SKIPPED"
+    }
+}
+
+tasks.register('mobile-fail', Test) {
+    useTestNG()
+    include '**/mobile/FailTest.class'
+    testLogging {
+        events "PASSED", "FAILED", "SKIPPED"
+    }
+}
+
+tasks.register('mobile-local', Test) {
+    useTestNG()
+    include '**/mobile/LocalTest.class'
+    testLogging {
+        events "PASSED", "FAILED", "SKIPPED"
+    }
+}
+
+tasks.register('mobile-local-parallel', Test) {
+    useTestNG() {
+        suites 'src/test/resources/web/suites/local.testng.xml'
+        systemProperty 'config', 'mobile'
+        parallel project.property('parallel')
+        threadCount Integer.parseInt(project.property('threads'))
+    }
+    testLogging {
+        events "PASSED", "FAILED", "SKIPPED"
+    }
+}
+
+tasks.register('android-single', Test) {
+    useTestNG()
+    include '**/android/SingleTest.class'
+    testLogging {
+        events "PASSED", "FAILED", "SKIPPED"
+    }
+}
+
+tasks.register('android-parallel', Test) {
+    useTestNG() {
+        suites 'src/test/resources/app/suites/android.parallel.testng.xml'
+        systemProperty 'config', 'android'
+        parallel project.property('parallel')
+        threadCount Integer.parseInt(project.property('threads'))
+    }
+    testLogging {
+        events "PASSED", "FAILED", "SKIPPED"
+    }
+}
+
+tasks.register('android-fail', Test) {
+    useTestNG()
+    include '**/android/FailTest.class'
+    testLogging {
+        events "PASSED", "FAILED", "SKIPPED"
+    }
+}
+
+tasks.register('android-local', Test) {
+    useTestNG()
+    include '**/android/LocalTest.class'
+    testLogging {
+        events "PASSED", "FAILED", "SKIPPED"
+    }
+}
+
+tasks.register('android-local-parallel', Test) {
+    useTestNG() {
+        suites 'src/test/resources/app/suites/android.local.testng.xml'
+        systemProperty 'config', 'android'
+        parallel project.property('parallel')
+        threadCount Integer.parseInt(project.property('threads'))
+    }
+    testLogging {
+        events "PASSED", "FAILED", "SKIPPED"
+    }
+}
+
+tasks.register('ios-single', Test) {
+    useTestNG()
+    include '**/ios/SingleTest.class'
+    testLogging {
+        events "PASSED", "FAILED", "SKIPPED"
+    }
+}
+
+tasks.register('ios-parallel', Test) {
+    useTestNG() {
+        suites 'src/test/resources/app/suites/ios.parallel.testng.xml'
+        systemProperty 'config', 'ios'
+        parallel project.property('parallel')
+        threadCount Integer.parseInt(project.property('threads'))
+    }
+    testLogging {
+        events "PASSED", "FAILED", "SKIPPED"
+    }
+}
+
+tasks.register('ios-fail', Test) {
+    useTestNG()
+    include '**/ios/FailTest.class'
+    testLogging {
+        events "PASSED", "FAILED", "SKIPPED"
+    }
+}
+
+tasks.register('ios-local', Test) {
+    useTestNG()
+    include '**/ios/LocalTest.class'
+    testLogging {
+        events "PASSED", "FAILED", "SKIPPED"
+    }
+}
+
+tasks.register('ios-local-parallel', Test) {
+    useTestNG() {
+        suites 'src/test/resources/app/suites/ios.local.testng.xml'
+        systemProperty 'config', 'ios'
+        parallel project.property('parallel')
+        threadCount Integer.parseInt(project.property('threads'))
+    }
+    testLogging {
+        events "PASSED", "FAILED", "SKIPPED"
+    }
+}
+
+tasks.register('espresso', Test) {
+    useTestNG()
+    include '**/EspressoTest.class'
+    testLogging {
+        events "PASSED", "FAILED", "SKIPPED"
+    }
+}
+
+tasks.register('xcuitest', Test) {
+    useTestNG()
+    include '**/XCUITest.class'
+    testLogging {
+        events "PASSED", "FAILED", "SKIPPED"
+    }
+}

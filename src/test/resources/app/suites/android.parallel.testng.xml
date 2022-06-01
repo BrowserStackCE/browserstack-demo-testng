@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Android Suite">
+    <test name="Android Test 1">
+        <parameter name="capability" value="0"/>
+        <classes>
+            <class name="com.test.app.appium.android.ParallelTest"/>
+        </classes>
+    </test>
+    <test name="Android Test 2">
+        <parameter name="capability" value="1"/>
+        <classes>
+            <class name="com.test.app.appium.android.ParallelTest"/>
+        </classes>
+    </test>
+    <test name="Android Test 3">
+        <parameter name="capability" value="2"/>
+        <classes>
+            <class name="com.test.app.appium.android.ParallelTest"/>
+        </classes>
+    </test>
+    <test name="Android Test 4">
+        <parameter name="capability" value="3"/>
+        <classes>
+            <class name="com.test.app.appium.android.ParallelTest"/>
+        </classes>
+    </test>
+    <test name="Android Test 5">
+        <parameter name="capability" value="4"/>
+        <classes>
+            <class name="com.test.app.appium.android.ParallelTest"/>
+        </classes>
+    </test>
+</suite>

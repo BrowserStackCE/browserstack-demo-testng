@@ -1,0 +1,41 @@
+{
+  "commonCapabilities": {
+    "project": "BrowserStack Demo TestNG",
+    "build": "Demo",
+    "browserstack.debug": true,
+    "browserstack.networkLogs": true
+  },
+  "capabilities": [
+    {
+      "os": "OS X",
+      "os_version": "Big Sur",
+      "browser": "Chrome",
+      "browser_version": "latest"
+    },
+    {
+      "os": "Windows",
+      "os_version": "10",
+      "browser": "Firefox",
+      "browser_version": "latest"
+    },
+    {
+      "os": "Windows",
+      "os_version": "10",
+      "browser": "Edge",
+      "browser_version": "latest"
+    },
+    {
+      "os": "OS X",
+      "os_version": "Big Sur",
+      "browser": "Safari",
+      "browser_version": "latest"
+    },
+    {
+      "os": "Windows",
+      "os_version": "10",
+      "browser": "Chrome",
+      "browser_version": "latest"
+    }
+  ]
+}
+
