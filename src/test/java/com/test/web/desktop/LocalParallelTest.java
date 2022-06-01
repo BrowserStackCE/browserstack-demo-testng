@@ -25,8 +25,6 @@ public class LocalParallelTest {
     private static final String ACCESS_KEY = System.getenv("BROWSERSTACK_ACCESS_KEY");
     private static final String HUB_URL = "https://hub-cloud.browserstack.com/wd/hub";
 
-    private final Map<String, String> capabilitiesMap = new HashMap<>();
-
     @BeforeSuite(alwaysRun = true)
     public void before() {
         LocalUtils.startLocal();
@@ -36,6 +34,7 @@ public class LocalParallelTest {
     @Parameters({"config", "capability"})
     public void setup(String configFile, String capability, Method m) throws MalformedURLException {
         JsonPath jsonPath = JsonPath.from(new File("src/test/resources/web/config/" + configFile + ".json"));
+        Map<String, String> capabilitiesMap = new HashMap<>();
         capabilitiesMap.putAll(jsonPath.getMap("commonCapabilities"));
         capabilitiesMap.putAll(jsonPath.getMap("capabilities[" + capability + "]"));
         if (capabilitiesMap.get("device") == null) {
@@ -52,11 +51,7 @@ public class LocalParallelTest {
     @Test
     public void openLocalWebPage() {
         WebDriver driver = driverThread.get();
-        if (capabilitiesMap.getOrDefault("device", "none").contains("iPhone")) {
-            driver.get("http://bs-local.com:8000");
-        } else {
-            driver.get("http://localhost:8000");
-        }
+        driver.get("http://localhost:8000");
         assertEquals(driver.getTitle(), "Local Server", "Incorrect title");
     }
 
