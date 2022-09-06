@@ -1,10 +1,5 @@
 # BrowserStack Demo TestNG <a href="https://www.browserstack.com/"><img src="https://www.vectorlogo.zone/logos/browserstack/browserstack-icon.svg" alt="BrowserStack" height="30"/></a> <a href="https://java.com"><img src="https://www.vectorlogo.zone/logos/java/java-icon.svg" alt="Java" height="30" /></a> <a href="https://www.selenium.dev/"><img src="https://seeklogo.com/images/S/selenium-logo-DB9103D7CF-seeklogo.com.png" alt="Selenium" height="30" /></a>
 
-| Product | Status |
-| --- | --- |
-| Automate | [![BrowserStack Status](https://automate.browserstack.com/badge.svg?badge_key=dHFiQ2xsZ1RDVUs4QXpYUmJFTEs3M1RiRVJTNGNnSHFGZGw3SnpFVXU2OD0tLTZacmdhanpLL01JaFJocUFGU3JJNkE9PQ==--f3ba05658718ec70bb69eee413997ddf1b8c2b0b)](https://automate.browserstack.com/public-build/dHFiQ2xsZ1RDVUs4QXpYUmJFTEs3M1RiRVJTNGNnSHFGZGw3SnpFVXU2OD0tLTZacmdhanpLL01JaFJocUFGU3JJNkE9PQ==--f3ba05658718ec70bb69eee413997ddf1b8c2b0b) |
-| App-Automate | [![BrowserStack Status](https://app-automate.browserstack.com/badge.svg?badge_key=WHRFK0I3eXlzalBRYzRNU0lKajFCUnNTclFLcllHbWZoa0hSSWZ4ZzhnQT0tLXZ2UFozbTJTZXBEUnY2MVBaa0dZM0E9PQ==--7a67691ee07e1db565ef4902b0e260b2f3a5f963)](https://app-automate.browserstack.com/public-build/WHRFK0I3eXlzalBRYzRNU0lKajFCUnNTclFLcllHbWZoa0hSSWZ4ZzhnQT0tLXZ2UFozbTJTZXBEUnY2MVBaa0dZM0E9PQ==--7a67691ee07e1db565ef4902b0e260b2f3a5f963) |
-
 Test execution using [TestNG](http://testng.org) on BrowserStack.
 
 ## Using Maven
