@@ -55,8 +55,8 @@ public class LocalTest {
         driver.findElementById("com.example.android.basicnetworking:id/test_action").click();
         String allText = driver.findElementsByClassName("android.widget.TextView")
                 .stream().map(MobileElement::getText).collect(joining());
-        assertTrue(allText.contains("The active connection is wifi."), "Text is not present");
-        assertTrue(allText.contains("Response is: Up and running"), "Text is not present");
+        assertTrue(allText.contains("The active connection is wifi"), "Text is not present");
+        assertTrue(allText.contains("Up and running"), "Text is not present");
     }
 
     @AfterMethod(alwaysRun = true)

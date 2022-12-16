@@ -63,9 +63,9 @@ public class LocalTest {
                 .ignoring(NotFoundException.class);
         driver.findElementByAccessibilityId("TestBrowserStackLocal").click();
         By result = MobileBy.AccessibilityId("ResultBrowserStackLocal");
-        wait.until(d -> d.findElement(result).getText().contains("Response is:"));
+        wait.until(d -> d.findElement(result).getText().contains("Up and running"));
         String resultText = driver.findElement(result).getText();
-        assertEquals(resultText, "Response is: Up and running", "Local connection is not up");
+        assertEquals(resultText, "Up and running", "Local connection is not up");
     }
 
     @AfterMethod(alwaysRun = true)
