@@ -39,7 +39,7 @@ public class ParallelTest {
         Map<String, String> capabilitiesMap = new HashMap<>();
         capabilitiesMap.putAll(jsonPath.getMap("commonCapabilities"));
         capabilitiesMap.putAll(jsonPath.getMap("capabilities[" + capability + "]"));
-        capabilitiesMap.put("name", m.getName() + " - " + capabilitiesMap.get("device"));
+        capabilitiesMap.put("name", m.getName());
         capabilitiesMap.put("app", "iOSDemoApp");
         capabilitiesMap.put("browserstack.user", USERNAME);
         capabilitiesMap.put("browserstack.key", ACCESS_KEY);

@@ -37,11 +37,7 @@ public class LocalParallelTest {
         Map<String, String> capabilitiesMap = new HashMap<>();
         capabilitiesMap.putAll(jsonPath.getMap("commonCapabilities"));
         capabilitiesMap.putAll(jsonPath.getMap("capabilities[" + capability + "]"));
-        if (capabilitiesMap.get("device") == null) {
-            capabilitiesMap.put("name", m.getName() + " - " + capabilitiesMap.get("browser") + " " + capabilitiesMap.get("browser_version"));
-        } else {
-            capabilitiesMap.put("name", m.getName() + " - " + capabilitiesMap.get("device"));
-        }
+        capabilitiesMap.put("name", m.getName());
         capabilitiesMap.put("browserstack.user", USERNAME);
         capabilitiesMap.put("browserstack.key", ACCESS_KEY);
         capabilitiesMap.put("browserstack.local", "true");

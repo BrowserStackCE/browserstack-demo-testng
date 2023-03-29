@@ -31,7 +31,7 @@ public class LocalTest {
         DesiredCapabilities caps = new DesiredCapabilities();
         caps.setCapability("project", "BrowserStack Demo TestNG");
         caps.setCapability("build", "Demo");
-        caps.setCapability("name", m.getName() + " - Google Pixel 5");
+        caps.setCapability("name", m.getName());
 
         caps.setCapability("device", "Google Pixel 5");
         caps.setCapability("os_version", "11.0");

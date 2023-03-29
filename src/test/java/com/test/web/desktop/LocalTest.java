@@ -31,7 +31,7 @@ public class LocalTest {
         DesiredCapabilities caps = new DesiredCapabilities();
         caps.setCapability("project", "BrowserStack Demo TestNG");
         caps.setCapability("build", "Demo");
-        caps.setCapability("name", m.getName() + " - Chrome latest");
+        caps.setCapability("name", m.getName());
 
         caps.setCapability("os", "Windows");
         caps.setCapability("os_version", "10");
