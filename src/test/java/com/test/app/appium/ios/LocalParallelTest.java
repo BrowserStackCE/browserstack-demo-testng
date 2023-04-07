@@ -77,7 +77,7 @@ public class LocalParallelTest {
         capabilitiesMap.putAll(jsonPath.getMap("commonCapabilities"));
         capabilitiesMap.putAll(jsonPath.getMap("capabilities[" + capability + "]"));
         capabilitiesMap.put("build", System.getenv("BROWSERSTACK_BUILD_NAME"));
-        capabilitiesMap.put("name", m.getName() + " - " + capabilitiesMap.get("device"));
+        capabilitiesMap.put("name", m.getName());
         capabilitiesMap.put("app", "iOSLocalApp");
         capabilitiesMap.put("browserstack.user", USERNAME);
         capabilitiesMap.put("browserstack.key", ACCESS_KEY);

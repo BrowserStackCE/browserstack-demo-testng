@@ -66,7 +66,7 @@ public class FailTest {
         DesiredCapabilities caps = new DesiredCapabilities();
         caps.setCapability("project", "BrowserStack Demo TestNG");
         caps.setCapability("build", System.getenv("BROWSERSTACK_BUILD_NAME"));
-        caps.setCapability("name", m.getName() + " - Google Pixel 3");
+        caps.setCapability("name", m.getName());
 
         caps.setCapability("device", "Google Pixel 3");
         caps.setCapability("os_version", "9.0");
