@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="iOS Suite">
+    <test name="iOS Test 1">
+        <parameter name="capability" value="0"/>
+        <classes>
+            <class name="com.test.app.appium.ios.ParallelTest"/>
+        </classes>
+    </test>
+    <test name="iOS Test 2">
+        <parameter name="capability" value="1"/>
+        <classes>
+            <class name="com.test.app.appium.ios.ParallelTest"/>
+        </classes>
+    </test>
+    <test name="iOS Test 3">
+        <parameter name="capability" value="2"/>
+        <classes>
+            <class name="com.test.app.appium.ios.ParallelTest"/>
+        </classes>
+    </test>
+    <test name="iOS Test 4">
+        <parameter name="capability" value="3"/>
+        <classes>
+            <class name="com.test.app.appium.ios.ParallelTest"/>
+        </classes>
+    </test>
+    <test name="iOS Test 5">
+        <parameter name="capability" value="4"/>
+        <classes>
+            <class name="com.test.app.appium.ios.ParallelTest"/>
+        </classes>
+    </test>
+</suite>
