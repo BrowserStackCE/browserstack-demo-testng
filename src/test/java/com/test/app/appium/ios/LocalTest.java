@@ -27,7 +27,7 @@ public class LocalTest {
 
     private static final String USERNAME = System.getenv("BROWSERSTACK_USERNAME");
     private static final String ACCESS_KEY = System.getenv("BROWSERSTACK_ACCESS_KEY");
-    private static final String HUB_URL = "https://hub-cloud.browserstack.com/wd/hub";
+    private static final String HUB_URL = "https://hub.browserstack.com/wd/hub";
 
     @BeforeSuite(alwaysRun = true)
     public void setupAppAndLocal() {
@@ -42,8 +42,8 @@ public class LocalTest {
         caps.setCapability("build", "Demo");
         caps.setCapability("name", m.getName());
 
-        caps.setCapability("device", "iPhone 12 Pro");
-        caps.setCapability("os_version", "14");
+        caps.setCapability("device", "iPhone 14");
+        caps.setCapability("os_version", "16");
         caps.setCapability("app", "iOSLocalApp");
 
         caps.setCapability("browserstack.user", USERNAME);

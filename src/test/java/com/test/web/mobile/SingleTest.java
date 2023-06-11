@@ -25,7 +25,7 @@ public class SingleTest {
 
     private static final String USERNAME = System.getenv("BROWSERSTACK_USERNAME");
     private static final String ACCESS_KEY = System.getenv("BROWSERSTACK_ACCESS_KEY");
-    private static final String HUB_URL = "https://hub-cloud.browserstack.com/wd/hub";
+    private static final String HUB_URL = "https://hub.browserstack.com/wd/hub";
 
     @BeforeMethod(alwaysRun = true)
     public void setup(Method m) throws MalformedURLException {
@@ -34,8 +34,8 @@ public class SingleTest {
         caps.setCapability("build", "Demo");
         caps.setCapability("name", m.getName());
 
-        caps.setCapability("device", "Google Pixel 5");
-        caps.setCapability("os_version", "11.0");
+        caps.setCapability("device", "Google Pixel 7");
+        caps.setCapability("os_version", "13.0");
 
         caps.setCapability("browserstack.user", USERNAME);
         caps.setCapability("browserstack.key", ACCESS_KEY);

@@ -4,6 +4,9 @@ description = 'browserstack-demo-testng'
 
 apply plugin: 'java'
 
+apply plugin: 'application'
+mainClassName = "com.local.server.MyHttpServer"
+
 repositories {
     mavenCentral()
 }
@@ -18,6 +21,11 @@ dependencies {
     implementation 'org.testng:testng:7.4.0'
     implementation 'com.browserstack:browserstack-local-java:1.0.3'
     implementation 'io.rest-assured:rest-assured:4.3.3'
+}
+
+tasks.register('execute', JavaExec) {
+    main = project.hasProperty("mainClass") ? getProperty("mainClass") : "NULL"
+    classpath = sourceSets.main.runtimeClasspath
 }
 
 tasks.register('desktop-single', Test) {

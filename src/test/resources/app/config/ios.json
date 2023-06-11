@@ -7,20 +7,20 @@
   },
   "capabilities": [
     {
-      "device": "iPhone 11 Pro",
-      "os_version": "13"
+      "device": "iPhone 14 Pro",
+      "os_version": "16"
     },
     {
-      "device": "iPhone 11 Pro Max",
-      "os_version": "13"
+      "device": "iPhone 14 Pro Max",
+      "os_version": "16"
     },
     {
-      "device": "iPhone 12 Pro",
-      "os_version": "14"
+      "device": "iPhone 13 Pro",
+      "os_version": "15"
     },
     {
-      "device": "iPhone 12 Pro Max",
-      "os_version": "14"
+      "device": "iPhone 13 Pro Max",
+      "os_version": "15"
     },
     {
       "device": "iPhone SE 2020",

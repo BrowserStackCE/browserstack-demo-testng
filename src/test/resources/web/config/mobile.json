@@ -7,20 +7,20 @@
   },
   "capabilities": [
     {
-      "device": "Google Pixel 5",
-      "os_version": "11.0"
+      "device": "Google Pixel 7",
+      "os_version": "13.0"
     },
     {
-      "device": "Samsung Galaxy S10",
-      "os_version": "9.0"
+      "device": "Samsung Galaxy S23",
+      "os_version": "13.0"
     },
     {
-      "device": "iPhone 11",
-      "os_version": "13"
+      "device": "iPhone 14",
+      "os_version": "16"
     },
     {
-      "device": "iPhone XS",
-      "os_version": "12"
+      "device": "iPhone 13 Mini",
+      "os_version": "15"
     },
     {
       "device": "iPhone 12 Pro",

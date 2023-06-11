@@ -25,7 +25,7 @@ public class FailTest {
 
     private static final String USERNAME = System.getenv("BROWSERSTACK_USERNAME");
     private static final String ACCESS_KEY = System.getenv("BROWSERSTACK_ACCESS_KEY");
-    private static final String HUB_URL = "https://hub-cloud.browserstack.com/wd/hub";
+    private static final String HUB_URL = "https://hub.browserstack.com/wd/hub";
 
     @BeforeSuite(alwaysRun = true)
     public void setupApp() {
@@ -39,8 +39,8 @@ public class FailTest {
         caps.setCapability("build", "Demo");
         caps.setCapability("name", m.getName());
 
-        caps.setCapability("device", "iPhone 11 Pro");
-        caps.setCapability("os_version", "13");
+        caps.setCapability("device", "iPhone 14");
+        caps.setCapability("os_version", "16");
         caps.setCapability("app", "iOSDemoApp");
 
         caps.setCapability("browserstack.user", USERNAME);

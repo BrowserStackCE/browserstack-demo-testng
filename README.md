@@ -17,6 +17,12 @@ Test execution using [TestNG](http://testng.org) on BrowserStack.
 
 ### Automate
 
+- To start a locally hosted website.
+  ```
+  mvn -P start-server compile exec:java
+  ```
+  Website will open on `localhost:8000`.
+
 #### Desktop browsers
 
 - Run a single test.
@@ -140,50 +146,56 @@ Test execution using [TestNG](http://testng.org) on BrowserStack.
 
 ### Automate
 
+- To start a locally hosted website.
+  ```
+  ./gradlew run
+  ```
+  Website will open on `localhost:8000`.
+
 #### Desktop browsers
 
 - Run a single test
   ```
-  ./gradlew desktop-single
+  ./gradlew clean desktop-single
   ```
 - Run parallel tests
   ```
-  ./gradlew desktop-parallel
+  ./gradlew clean desktop-parallel
   ```
 - Run a failed test
   ```
-  ./gradlew desktop-fail
+  ./gradlew clean desktop-fail
   ```
 - Run a local test
   ```
-  ./gradlew desktop-local
+  ./gradlew clean desktop-local
   ```
 - Run parallel local tests
   ```
-  ./gradlew desktop-local-parallel
+  ./gradlew clean desktop-local-parallel
   ```
 
 #### Mobile browsers
 
 - Run a single test
   ```
-  ./gradlew mobile-single
+  ./gradlew clean mobile-single
   ```
 - Run parallel tests
   ```
-  ./gradlew mobile-parallel
+  ./gradlew clean mobile-parallel
   ```
 - Run a failed test
   ```
-  ./gradlew mobile-fail
+  ./gradlew clean mobile-fail
   ```
 - Run a local test
   ```
-  ./gradlew mobile-local
+  ./gradlew clean mobile-local
   ```
 - Run parallel local tests
   ```
-  ./gradlew mobile-local-parallel
+  ./gradlew clean mobile-local-parallel
   ```
 
 ### App-Automate
@@ -192,69 +204,65 @@ Test execution using [TestNG](http://testng.org) on BrowserStack.
 
 - Run a single test
   ```
-  ./gradlew android-single
+  ./gradlew clean android-single
   ```
 - Run parallel tests
   ```
-  ./gradlew android-parallel
+  ./gradlew clean android-parallel
   ```
 - Run a failed test
   ```
-  ./gradlew android-fail
+  ./gradlew clean android-fail
   ```
 - Run a local test
   ```
-  ./gradlew android-local
+  ./gradlew clean android-local
   ```
 - Run parallel local tests
   ```
-  ./gradlew android-local-parallel
+  ./gradlew clean android-local-parallel
   ```
 
 #### iOS devices
 
 - Run a single test
   ```
-  ./gradlew ios-single
+  ./gradlew clean ios-single
   ```
 - Run parallel tests
   ```
-  ./gradlew ios-parallel
+  ./gradlew clean ios-parallel
   ```
 - Run a failed test
   ```
-  ./gradlew ios-fail
+  ./gradlew clean ios-fail
   ```
 - Run a local test
   ```
-  ./gradlew ios-local
+  ./gradlew clean ios-local
   ```
 - Run parallel local tests
   ```
-  ./gradlew ios-local-parallel
+  ./gradlew clean ios-local-parallel
   ```
 
 #### Espresso tests
 
 - Run an Espresso test
   ```
-  ./gradlew espresso
+  ./gradlew clean espresso
   ```
   
 #### XCUI tests
 
 - Run a XCUI test
   ```
-  ./gradlew ios-local-parallel
+  ./gradlew clean xcuitest
   ```
 
 ## Notes
 - You can view your Automate test results on the [BrowserStack Automate dashboard](https://automate.browserstack.com/).
 - You can view your App-Automate test results on the [BrowserStack App-Automate dashboard](https://app-automate.browserstack.com/).
-- To start a locally hosted website. Website will open on `localhost:8000`.
-  ```
-  mvn -P start-server compile exec:java
-  ```
 - To use specific number of threads:
   - For Maven use `-Dthreads=<thread-count>`. Example `-Dthreads=3`
   - For Gradle use `-Pthreads=<thread-count>`. Example `-Pthreads=3`

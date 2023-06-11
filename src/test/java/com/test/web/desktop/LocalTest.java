@@ -19,7 +19,7 @@ public class LocalTest {
 
     private static final String USERNAME = System.getenv("BROWSERSTACK_USERNAME");
     private static final String ACCESS_KEY = System.getenv("BROWSERSTACK_ACCESS_KEY");
-    private static final String HUB_URL = "https://hub-cloud.browserstack.com/wd/hub";
+    private static final String HUB_URL = "https://hub.browserstack.com/wd/hub";
 
     @BeforeSuite(alwaysRun = true)
     public void setupLocal() {
