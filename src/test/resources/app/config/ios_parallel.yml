@@ -1,0 +1,21 @@
+userName: BROWSERSTACK_USERNAME
+accessKey: BROWSERSTACK_ACCESS_KEY
+
+projectName: BrowserStack Samples
+buildName: BrowserStack Demo Build
+buildIdentifier: '#${BUILD_NUMBER}'
+
+framework: testng
+source: testng:appium-sample-sdk:v1.1
+
+app: iOSDemoApp
+platforms:
+  - deviceName: iPhone 15
+    osVersion: 17
+  - deviceName: iPhone 14
+    osVersion: 16
+  - deviceName: iPhone 13
+    osVersion: 15
+debug: true
+networkLogs: true
+testObservability: true

@@ -1,0 +1,18 @@
+userName: BROWSERSTACK_USERNAME
+accessKey: BROWSERSTACK_ACCESS_KEY
+
+projectName: BrowserStack Samples
+buildName: BrowserStack Demo Build
+buildIdentifier: '#${BUILD_NUMBER}'
+
+framework: testng
+source: testng:appium-sample-sdk:v1.1
+
+app: AndroidDemoApp
+platforms:
+  - deviceName: Samsung Galaxy S22 Ultra
+  - deviceName: Samsung Galaxy S21
+  - deviceName: Google Pixel 6 Pro
+debug: true
+networkLogs: true
+testObservability: true

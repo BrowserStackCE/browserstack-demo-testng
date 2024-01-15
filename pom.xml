@@ -31,8 +31,9 @@
         </dependency>
         <dependency>
             <groupId>com.browserstack</groupId>
-            <artifactId>browserstack-local-java</artifactId>
-            <version>1.0.3</version>
+            <artifactId>browserstack-java-sdk</artifactId>
+            <version>1.13.0</version>
+            <scope>compile</scope>
         </dependency>
         <!-- https://mvnrepository.com/artifact/io.rest-assured/rest-assured -->
         <dependency>
@@ -42,9 +43,35 @@
         </dependency>
     </dependencies>
 
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>getClasspathFilenames</id>
+                        <goals>
+                            <goal>properties</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M5</version>
+                <configuration>
+                    <argLine>
+                        -javaagent:${com.browserstack:browserstack-java-sdk:jar}
+                    </argLine>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
     <profiles>
         <profile>
-            <id>desktop-single</id>
+            <id>web-single</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
@@ -55,6 +82,12 @@
                         <artifactId>maven-surefire-plugin</artifactId>
                         <version>3.0.0-M5</version>
                         <configuration>
+                            <systemProperties>
+                                <property>
+                                    <name>browserstack.config</name>
+                                    <value>src/test/resources/web/config/web_single.yml</value>
+                                </property>
+                            </systemProperties>
                             <includes>
                                 <include>**/desktop/SingleTest.java</include>
                             </includes>
@@ -64,7 +97,7 @@
             </build>
         </profile>
         <profile>
-            <id>desktop-parallel</id>
+            <id>web-parallel</id>
             <build>
                 <plugins>
                     <plugin>
@@ -72,24 +105,22 @@
                         <artifactId>maven-surefire-plugin</artifactId>
                         <version>3.0.0-M5</version>
                         <configuration>
-                            <parallel>tests</parallel>
-                            <threadCount>${threads}</threadCount>
                             <systemProperties>
                                 <property>
-                                    <name>config</name>
-                                    <value>desktop</value>
+                                    <name>browserstack.config</name>
+                                    <value>src/test/resources/web/config/web_parallel.yml</value>
                                 </property>
                             </systemProperties>
-                            <suiteXmlFiles>
-                                <suiteXmlFile>src/test/resources/web/suites/parallel.testng.xml</suiteXmlFile>
-                            </suiteXmlFiles>
+                            <includes>
+                                <include>**/desktop/SingleTest.java</include>
+                            </includes>
                         </configuration>
                     </plugin>
                 </plugins>
             </build>
         </profile>
         <profile>
-            <id>desktop-fail</id>
+            <id>web-fail</id>
             <build>
                 <plugins>
                     <plugin>
@@ -97,6 +128,12 @@
                         <artifactId>maven-surefire-plugin</artifactId>
                         <version>3.0.0-M5</version>
                         <configuration>
+                            <systemProperties>
+                                <property>
+                                    <name>browserstack.config</name>
+                                    <value>src/test/resources/web/config/web_single.yml</value>
+                                </property>
+                            </systemProperties>
                             <includes>
                                 <include>**/desktop/FailTest.java</include>
                             </includes>
@@ -106,7 +143,7 @@
             </build>
         </profile>
         <profile>
-            <id>desktop-local</id>
+            <id>web-local</id>
             <build>
                 <plugins>
                     <plugin>
@@ -114,135 +151,15 @@
                         <artifactId>maven-surefire-plugin</artifactId>
                         <version>3.0.0-M5</version>
                         <configuration>
+                            <systemProperties>
+                                <property>
+                                    <name>browserstack.config</name>
+                                    <value>src/test/resources/web/config/web_local.yml</value>
+                                </property>
+                            </systemProperties>
                             <includes>
                                 <include>**/desktop/LocalTest.java</include>
                             </includes>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <id>desktop-local-parallel</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <version>3.0.0-M5</version>
-                        <configuration>
-                            <parallel>tests</parallel>
-                            <threadCount>${threads}</threadCount>
-                            <systemProperties>
-                                <property>
-                                    <name>config</name>
-                                    <value>desktop</value>
-                                </property>
-                            </systemProperties>
-                            <suiteXmlFiles>
-                                <suiteXmlFile>src/test/resources/web/suites/local.testng.xml</suiteXmlFile>
-                            </suiteXmlFiles>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <id>mobile-single</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <version>3.0.0-M5</version>
-                        <configuration>
-                            <includes>
-                                <include>**/mobile/SingleTest.java</include>
-                            </includes>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <id>mobile-parallel</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <version>3.0.0-M5</version>
-                        <configuration>
-                            <parallel>tests</parallel>
-                            <threadCount>${threads}</threadCount>
-                            <systemProperties>
-                                <property>
-                                    <name>config</name>
-                                    <value>mobile</value>
-                                </property>
-                            </systemProperties>
-                            <suiteXmlFiles>
-                                <suiteXmlFile>src/test/resources/web/suites/parallel.testng.xml</suiteXmlFile>
-                            </suiteXmlFiles>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <id>mobile-fail</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <version>3.0.0-M5</version>
-                        <configuration>
-                            <includes>
-                                <include>**/mobile/FailTest.java</include>
-                            </includes>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <id>mobile-local</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <version>3.0.0-M5</version>
-                        <configuration>
-                            <includes>
-                                <include>**/mobile/LocalTest.java</include>
-                            </includes>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <id>mobile-local-parallel</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <version>3.0.0-M5</version>
-                        <configuration>
-                            <parallel>tests</parallel>
-                            <threadCount>${threads}</threadCount>
-                            <systemProperties>
-                                <property>
-                                    <name>config</name>
-                                    <value>mobile</value>
-                                </property>
-                            </systemProperties>
-                            <suiteXmlFiles>
-                                <suiteXmlFile>src/test/resources/web/suites/local.testng.xml</suiteXmlFile>
-                            </suiteXmlFiles>
                         </configuration>
                     </plugin>
                 </plugins>
@@ -272,6 +189,12 @@
                         <artifactId>maven-surefire-plugin</artifactId>
                         <version>3.0.0-M5</version>
                         <configuration>
+                            <systemProperties>
+                                <property>
+                                    <name>browserstack.config</name>
+                                    <value>src/test/resources/app/config/android_single.yml</value>
+                                </property>
+                            </systemProperties>
                             <includes>
                                 <include>**/android/SingleTest.java</include>
                             </includes>
@@ -289,17 +212,15 @@
                         <artifactId>maven-surefire-plugin</artifactId>
                         <version>3.0.0-M5</version>
                         <configuration>
-                            <parallel>tests</parallel>
-                            <threadCount>${threads}</threadCount>
                             <systemProperties>
                                 <property>
-                                    <name>config</name>
-                                    <value>android</value>
+                                    <name>browserstack.config</name>
+                                    <value>src/test/resources/app/config/android_parallel.yml</value>
                                 </property>
                             </systemProperties>
-                            <suiteXmlFiles>
-                                <suiteXmlFile>src/test/resources/app/suites/android.parallel.testng.xml</suiteXmlFile>
-                            </suiteXmlFiles>
+                            <includes>
+                                <include>**/android/SingleTest.java</include>
+                            </includes>
                         </configuration>
                     </plugin>
                 </plugins>
@@ -314,6 +235,12 @@
                         <artifactId>maven-surefire-plugin</artifactId>
                         <version>3.0.0-M5</version>
                         <configuration>
+                            <systemProperties>
+                                <property>
+                                    <name>browserstack.config</name>
+                                    <value>src/test/resources/app/config/android_single.yml</value>
+                                </property>
+                            </systemProperties>
                             <includes>
                                 <include>**/android/FailTest.java</include>
                             </includes>
@@ -331,34 +258,15 @@
                         <artifactId>maven-surefire-plugin</artifactId>
                         <version>3.0.0-M5</version>
                         <configuration>
+                            <systemProperties>
+                                <property>
+                                    <name>browserstack.config</name>
+                                    <value>src/test/resources/app/config/android_local.yml</value>
+                                </property>
+                            </systemProperties>
                             <includes>
                                 <include>**/android/LocalTest.java</include>
                             </includes>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <id>android-local-parallel</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <version>3.0.0-M5</version>
-                        <configuration>
-                            <parallel>tests</parallel>
-                            <threadCount>${threads}</threadCount>
-                            <systemProperties>
-                                <property>
-                                    <name>config</name>
-                                    <value>android</value>
-                                </property>
-                            </systemProperties>
-                            <suiteXmlFiles>
-                                <suiteXmlFile>src/test/resources/app/suites/android.local.testng.xml</suiteXmlFile>
-                            </suiteXmlFiles>
                         </configuration>
                     </plugin>
                 </plugins>
@@ -373,6 +281,12 @@
                         <artifactId>maven-surefire-plugin</artifactId>
                         <version>3.0.0-M5</version>
                         <configuration>
+                            <systemProperties>
+                                <property>
+                                    <name>browserstack.config</name>
+                                    <value>src/test/resources/app/config/ios_single.yml</value>
+                                </property>
+                            </systemProperties>
                             <includes>
                                 <include>**/ios/SingleTest.java</include>
                             </includes>
@@ -390,17 +304,15 @@
                         <artifactId>maven-surefire-plugin</artifactId>
                         <version>3.0.0-M5</version>
                         <configuration>
-                            <parallel>tests</parallel>
-                            <threadCount>${threads}</threadCount>
                             <systemProperties>
                                 <property>
-                                    <name>config</name>
-                                    <value>ios</value>
+                                    <name>browserstack.config</name>
+                                    <value>src/test/resources/app/config/ios_parallel.yml</value>
                                 </property>
                             </systemProperties>
-                            <suiteXmlFiles>
-                                <suiteXmlFile>src/test/resources/app/suites/ios.parallel.testng.xml</suiteXmlFile>
-                            </suiteXmlFiles>
+                            <includes>
+                                <include>**/ios/SingleTest.java</include>
+                            </includes>
                         </configuration>
                     </plugin>
                 </plugins>
@@ -415,6 +327,12 @@
                         <artifactId>maven-surefire-plugin</artifactId>
                         <version>3.0.0-M5</version>
                         <configuration>
+                            <systemProperties>
+                                <property>
+                                    <name>browserstack.config</name>
+                                    <value>src/test/resources/app/config/ios_single.yml</value>
+                                </property>
+                            </systemProperties>
                             <includes>
                                 <include>**/ios/FailTest.java</include>
                             </includes>
@@ -432,34 +350,15 @@
                         <artifactId>maven-surefire-plugin</artifactId>
                         <version>3.0.0-M5</version>
                         <configuration>
+                            <systemProperties>
+                                <property>
+                                    <name>browserstack.config</name>
+                                    <value>src/test/resources/app/config/ios_local.yml</value>
+                                </property>
+                            </systemProperties>
                             <includes>
                                 <include>**/ios/LocalTest.java</include>
                             </includes>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <id>ios-local-parallel</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <version>3.0.0-M5</version>
-                        <configuration>
-                            <parallel>tests</parallel>
-                            <threadCount>${threads}</threadCount>
-                            <systemProperties>
-                                <property>
-                                    <name>config</name>
-                                    <value>ios</value>
-                                </property>
-                            </systemProperties>
-                            <suiteXmlFiles>
-                                <suiteXmlFile>src/test/resources/app/suites/ios.local.testng.xml</suiteXmlFile>
-                            </suiteXmlFiles>
                         </configuration>
                     </plugin>
                 </plugins>

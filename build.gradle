@@ -3,9 +3,9 @@ version = '1.0'
 description = 'browserstack-demo-testng'
 
 apply plugin: 'java'
-
 apply plugin: 'application'
 mainClassName = "com.local.server.MyHttpServer"
+applicationDefaultJvmArgs = ["-javaagent:/Users/sujaysawant/.m2/repository/com/browserstack/browserstack-java-sdk/1.13.0/browserstack-java-sdk-1.13.0.jar"]
 
 repositories {
     mavenCentral()
@@ -19,7 +19,7 @@ sourceSets {
 dependencies {
     implementation 'io.appium:java-client:7.5.1'
     implementation 'org.testng:testng:7.4.0'
-    implementation 'com.browserstack:browserstack-local-java:1.0.3'
+    implementation 'com.browserstack:browserstack-java-sdk:1.13.0'
     implementation 'io.rest-assured:rest-assured:4.3.3'
 }
 
@@ -30,6 +30,7 @@ tasks.register('execute', JavaExec) {
 
 tasks.register('desktop-single', Test) {
     useTestNG()
+    systemProperty 'browserstack.config', 'src/test/resources/web/config/web_single.yml'
     include '**/desktop/SingleTest.class'
     testLogging {
         events "PASSED", "FAILED", "SKIPPED"

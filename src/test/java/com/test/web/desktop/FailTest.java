@@ -1,7 +1,6 @@
 package com.test.web.desktop;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -24,28 +23,10 @@ public class FailTest {
 
     private WebDriver driver;
 
-    private static final String USERNAME = System.getenv("BROWSERSTACK_USERNAME");
-    private static final String ACCESS_KEY = System.getenv("BROWSERSTACK_ACCESS_KEY");
-    private static final String HUB_URL = "https://hub.browserstack.com/wd/hub";
-
     @BeforeMethod(alwaysRun = true)
     public void setup(Method m) throws MalformedURLException {
         DesiredCapabilities caps = new DesiredCapabilities();
-        caps.setCapability("project", "BrowserStack Demo TestNG");
-        caps.setCapability("build", "Demo");
-        caps.setCapability("name", m.getName());
-
-        caps.setCapability("os", "Windows");
-        caps.setCapability("os_version", "10");
-        caps.setCapability("browser", "Chrome");
-        caps.setCapability("browser_version", "latest");
-
-        caps.setCapability("browserstack.user", USERNAME);
-        caps.setCapability("browserstack.key", ACCESS_KEY);
-        caps.setCapability("browserstack.debug", true);
-        caps.setCapability("browserstack.networkLogs", true);
-
-        driver = new RemoteWebDriver(new URL(HUB_URL), caps);
+        driver = new RemoteWebDriver(new URL("http://127.0.0.1:4723/wd/hub"), caps);
     }
 
     @Test
@@ -62,10 +43,6 @@ public class FailTest {
 
     @AfterMethod(alwaysRun = true)
     public void closeDriver(ITestResult tr) {
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        String reason = tr.getThrowable().getMessage().split("\\n")[0].replaceAll("[\\\\{}\"]", "");
-        System.out.println(reason);
-        js.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"failed\", \"reason\": \"" + reason + "\"}}");
         driver.quit();
     }
 

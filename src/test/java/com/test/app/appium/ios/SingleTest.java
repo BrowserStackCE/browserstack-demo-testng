@@ -4,7 +4,6 @@ import com.utils.AppUtils;
 import io.appium.java_client.MobileDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.ios.IOSDriver;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.AfterMethod;
@@ -22,10 +21,6 @@ public class SingleTest {
 
     private MobileDriver<MobileElement> driver;
 
-    private static final String USERNAME = System.getenv("BROWSERSTACK_USERNAME");
-    private static final String ACCESS_KEY = System.getenv("BROWSERSTACK_ACCESS_KEY");
-    private static final String HUB_URL = "https://hub.browserstack.com/wd/hub";
-
     @BeforeSuite(alwaysRun = true)
     public void setupApp() {
         AppUtils.uploadApp("iOSDemoApp", "ios/BStackSampleApp.ipa");
@@ -34,20 +29,7 @@ public class SingleTest {
     @BeforeMethod(alwaysRun = true)
     public void setup(Method m) throws MalformedURLException {
         DesiredCapabilities caps = new DesiredCapabilities();
-        caps.setCapability("project", "BrowserStack Demo TestNG");
-        caps.setCapability("build", "Demo");
-        caps.setCapability("name", m.getName());
-
-        caps.setCapability("device", "iPhone 14");
-        caps.setCapability("os_version", "16");
-        caps.setCapability("app", "iOSDemoApp");
-
-        caps.setCapability("browserstack.user", USERNAME);
-        caps.setCapability("browserstack.key", ACCESS_KEY);
-        caps.setCapability("browserstack.debug", true);
-        caps.setCapability("browserstack.networkLogs", true);
-
-        driver = new IOSDriver<>(new URL(HUB_URL), caps);
+        driver = new IOSDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), caps);
     }
 
     @Test
@@ -61,8 +43,6 @@ public class SingleTest {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"passed\"}}");
         driver.quit();
     }
 }

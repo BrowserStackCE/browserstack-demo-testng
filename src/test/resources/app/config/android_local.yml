@@ -1,0 +1,20 @@
+userName: BROWSERSTACK_USERNAME
+accessKey: BROWSERSTACK_ACCESS_KEY
+
+projectName: BrowserStack Samples
+buildName: BrowserStack Demo Build
+buildIdentifier: '#${BUILD_NUMBER}'
+
+framework: testng
+source: testng:appium-sample-sdk:v1.1
+
+app: AndroidLocalApp
+platforms:
+  - deviceName: Samsung Galaxy S22 Ultra
+    osVersion: 12.0
+    platformName: android
+browserstackLocal: true
+debug: true
+networkLogs: true
+interactiveDebugging: true
+testObservability: true

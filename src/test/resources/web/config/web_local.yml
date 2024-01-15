@@ -1,0 +1,19 @@
+userName: BROWSERSTACK_USERNAME
+accessKey: BROWSERSTACK_ACCESS_KEY
+
+projectName: BrowserStack Samples
+buildName: BrowserStack Demo Build
+buildIdentifier: '#${BUILD_NUMBER}'
+
+framework: testng
+source: testng:sample-master:v1.1
+
+platforms:
+  - os: OS X
+    osVersion: Sonoma
+    browserName: Chrome
+    browserVersion: latest
+browserstackLocal: true
+debug: true
+networkLogs: true
+testObservability: true
