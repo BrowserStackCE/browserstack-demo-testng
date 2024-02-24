@@ -64,9 +64,11 @@ source: testng:sample-master:v1.1
 browserstackLocal: true # <boolean> (Default false)
 
 # Options to be passed to BrowserStack local in-case of advanced configurations
-# browserStackLocalOptions:
-  # localIdentifier: # <string> (Default: null) Needed if you need to run multiple instances of local.
-  # forceLocal: true  # <boolean> (Default: false) Set to true if you need to resolve all your traffic via BrowserStack Local tunnel.
+ browserStackLocalOptions:
+   localIdentifier: # <string> (Default: null) Needed if you need to run multiple instances of local.
+   forceLocal: true  # <boolean> (Default: false) Set to true if you need to resolve all your traffic via BrowserStack Local tunnel.
+   logFile: local.log
+   verbose: 3
   # Entire list of arguments available here -> https://www.browserstack.com/docs/automate/selenium/manage-incoming-connections
   
 # ===================

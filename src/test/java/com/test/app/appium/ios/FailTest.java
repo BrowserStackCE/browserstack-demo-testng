@@ -1,8 +1,7 @@
 package com.test.app.appium.ios;
 
 import com.utils.AppUtils;
-import io.appium.java_client.MobileDriver;
-import io.appium.java_client.MobileElement;
+import io.appium.java_client.AppiumBy;
 import io.appium.java_client.ios.IOSDriver;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -20,7 +19,7 @@ import static org.testng.Assert.assertNotEquals;
 
 public class FailTest {
 
-    private MobileDriver<MobileElement> driver;
+    private IOSDriver driver;
 
     @BeforeSuite(alwaysRun = true)
     public void setupApp() {
@@ -30,15 +29,15 @@ public class FailTest {
     @BeforeMethod(alwaysRun = true)
     public void setup(Method m) throws MalformedURLException {
         DesiredCapabilities caps = new DesiredCapabilities();
-        driver = new IOSDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), caps);
+        driver = new IOSDriver(new URL("http://127.0.0.1:4723/wd/hub"), caps);
     }
 
     @Test
     public void printText() {
-        driver.findElementByAccessibilityId("Text Button").click();
-        driver.findElementByAccessibilityId("Text Input").click();
-        driver.findElementByAccessibilityId("Text Input").sendKeys("Welcome to BrowserStack" + Keys.ENTER);
-        assertNotEquals(driver.findElementByAccessibilityId("Text Output").getText(),
+        driver.findElement(AppiumBy.accessibilityId("Text Button")).click();
+        driver.findElement(AppiumBy.accessibilityId("Text Input")).click();
+        driver.findElement(AppiumBy.accessibilityId("Text Input")).sendKeys("Welcome to BrowserStack" + Keys.ENTER);
+        assertNotEquals(driver.findElement(AppiumBy.accessibilityId("Text Output")).getText(),
                 "Welcome to BrowserStack", "Incorrect text");
     }
 

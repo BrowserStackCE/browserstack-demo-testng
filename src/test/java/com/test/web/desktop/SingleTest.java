@@ -12,6 +12,7 @@ import org.testng.annotations.Test;
 import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.Duration;
 
 import static org.openqa.selenium.Keys.TAB;
 import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
@@ -30,7 +31,7 @@ public class SingleTest {
 
     @Test
     public void bStackDemoLogin() {
-        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         driver.get("https://bstackdemo.com");
         wait.until(elementToBeClickable(By.id("signin"))).click();
         wait.until(elementToBeClickable(By.cssSelector("#username input"))).sendKeys("fav_user" + TAB);
