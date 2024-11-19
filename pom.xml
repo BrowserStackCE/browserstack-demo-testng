@@ -31,7 +31,7 @@
         <dependency>
             <groupId>com.browserstack</groupId>
             <artifactId>browserstack-java-sdk</artifactId>
-            <version>1.13.10</version>
+            <version>1.26.4</version>
             <scope>compile</scope>
         </dependency>
         <!-- https://mvnrepository.com/artifact/io.rest-assured/rest-assured -->
@@ -180,7 +180,7 @@
                                 </property>
                             </systemProperties>
                             <includes>
-                                <include>**/desktop/LocalTest.java</include>
+                                <include>**/desktop/SingleTest.java</include>
                             </includes>
                         </configuration>
                     </plugin>
