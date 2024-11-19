@@ -1,0 +1,19 @@
+userName: BROWSERSTACK_USERNAME
+accessKey: BROWSERSTACK_ACCESS_KEY
+
+projectName: BrowserStack Samples
+buildName: BrowserStack Demo Build
+buildIdentifier: '#${BUILD_NUMBER}'
+
+platforms:
+  - browserName: Chrome
+    browserVersion: latest
+  - browserName: Firefox
+    browserVersion: latest
+  - browserName: Edge
+    browserVersion: latest
+turboScale: true
+browserstackLocal: true
+debug: false
+networkLogs: false
+consoleLogs: errors

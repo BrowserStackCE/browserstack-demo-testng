@@ -31,7 +31,7 @@
         <dependency>
             <groupId>com.browserstack</groupId>
             <artifactId>browserstack-java-sdk</artifactId>
-            <version>1.13.0</version>
+            <version>1.13.10</version>
             <scope>compile</scope>
         </dependency>
         <!-- https://mvnrepository.com/artifact/io.rest-assured/rest-assured -->
@@ -154,6 +154,29 @@
                                 <property>
                                     <name>browserstack.config</name>
                                     <value>src/test/resources/web/config/web_local.yml</value>
+                                </property>
+                            </systemProperties>
+                            <includes>
+                                <include>**/desktop/LocalTest.java</include>
+                            </includes>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>ats-parallel</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>3.0.0-M5</version>
+                        <configuration>
+                            <systemProperties>
+                                <property>
+                                    <name>browserstack.config</name>
+                                    <value>src/test/resources/web/config/ats_parallel.yml</value>
                                 </property>
                             </systemProperties>
                             <includes>

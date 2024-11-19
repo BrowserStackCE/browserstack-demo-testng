@@ -16,3 +16,4 @@ debug: true
 networkLogs: true
 interactiveDebugging: true
 testObservability: true
+appProfiling: true
