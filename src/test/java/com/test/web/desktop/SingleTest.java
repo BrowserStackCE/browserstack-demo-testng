@@ -35,9 +35,6 @@ public class SingleTest {
     @Test
     public void bStackDemoLogin() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        System.out.println("##Platform is " + BrowserStackSdk.getCurrentPlatform());
-        PercySDK.snapshot(driver, "Home Page");
-        PercySDK.screenshot(driver, "");
         driver.get("https://bstackdemo.com");
         wait.until(elementToBeClickable(By.id("signin"))).click();
         wait.until(elementToBeClickable(By.cssSelector("#username input"))).sendKeys("fav_user" + TAB);
