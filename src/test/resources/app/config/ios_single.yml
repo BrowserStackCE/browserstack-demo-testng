@@ -5,8 +5,8 @@ projectName: BrowserStack Samples
 buildName: BrowserStack Demo Build
 
 platforms:
-  - deviceName: iPhone 16
-    osVersion: 18
+  - deviceName: iPhone 13
+    osVersion: 15
 
 app: iOSDemoApp
 debug: true

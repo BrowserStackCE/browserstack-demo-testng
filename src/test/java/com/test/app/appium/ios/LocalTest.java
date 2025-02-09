@@ -13,7 +13,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
-import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
@@ -30,7 +29,7 @@ public class LocalTest {
     }
 
     @BeforeMethod(alwaysRun = true)
-    public void setupDriver(Method m) throws MalformedURLException {
+    public void setupDriver() throws MalformedURLException {
         DesiredCapabilities caps = new DesiredCapabilities();
         driver = new IOSDriver(new URL("http://127.0.0.1:4723/wd/hub"), caps);
     }

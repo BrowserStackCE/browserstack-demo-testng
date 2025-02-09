@@ -1,21 +1,21 @@
 package com.test.web.desktop;
 
+import com.browserstack.BrowserStackSdk;
 import com.browserstack.PercySDK;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
-import java.util.HashMap;
-import java.util.Map;
 
 import static org.openqa.selenium.Keys.TAB;
 import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
@@ -27,7 +27,7 @@ public class SingleTest {
     private WebDriver driver;
 
     @BeforeMethod(alwaysRun = true)
-    public void setup(Method m) throws MalformedURLException {
+    public void setup() throws MalformedURLException {
         DesiredCapabilities caps = new DesiredCapabilities();
         driver = new RemoteWebDriver(new URL("http://127.0.0.1:4723/wd/hub"), caps);
     }
@@ -35,6 +35,9 @@ public class SingleTest {
     @Test
     public void bStackDemoLogin() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        System.out.println("##Platform is " + BrowserStackSdk.getCurrentPlatform());
+        PercySDK.snapshot(driver, "Home Page");
+        PercySDK.screenshot(driver, "");
         driver.get("https://bstackdemo.com");
         wait.until(elementToBeClickable(By.id("signin"))).click();
         wait.until(elementToBeClickable(By.cssSelector("#username input"))).sendKeys("fav_user" + TAB);
@@ -42,13 +45,6 @@ public class SingleTest {
         driver.findElement(By.id("login-btn")).click();
         String username = wait.until(presenceOfElementLocated(By.className("username"))).getText();
         assertEquals(username, "fav_user", "Incorrect username");
-    }
-
-//    @Test
-    public void bStackDemoLogin2() throws InterruptedException {
-        driver.get("http://asccw.playngonetwork.com/casino/ContainerLauncher?pid=2&gid=bookofdead&lang=en_GB&practice=1&channel=desktop&demo=2");
-        Thread.sleep(30000);
-        PercySDK.screenshot(driver, "Game Page");
     }
 
     @AfterMethod(alwaysRun = true)

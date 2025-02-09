@@ -1,28 +1,21 @@
 userName: BROWSERSTACK_USERNAME
 accessKey: BROWSERSTACK_ACCESS_KEY
+
+buildName: BrowserStack Demo Build
+buildIdentifier: ${BUILD_NUMBER}
+projectName: BrowserStack Samples
+
 platforms:
-  - os: Windows
-    osVersion: 11
-    browserName: Edge
+  - browserName: Edge
     browserVersion: latest
-parallelsPerPlatform: 20
-browserstackLocal: false
+  - browserName: Chrome
+    browserVersion: latest
+  - browserName: Firefox
+    browserVersion: latest
+parallelsPerPlatform: 5
+
+browserstackLocal: true
 browserStackLocalOptions:
   forceLocal: true
-  proxyHost: proxy-l
-  proxyPort: 3128
-  forceProxy: true
-buildName: bstack-sdk-test
-buildIdentifier: ${BUILD_NUMBER}
-projectName: DRS Specs
-timezone: London
-resolution: 3840x2160
-idleTimeout: 300
-maskCommands: setValues, getValues, setCookies, getCookies
-maskBasicAuth: true
-disableCorsRestrictions: true
-debug: true
-logLevel: debug
-networkLogs: false
-consoleLogs: info
-turboScale: false
+
+turboScale: true

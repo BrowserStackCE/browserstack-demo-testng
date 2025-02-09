@@ -4,7 +4,6 @@ import com.utils.AppUtils;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.NotFoundException;
-import org.openqa.selenium.ScreenOrientation;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.FluentWait;
@@ -14,7 +13,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
-import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
@@ -33,7 +31,7 @@ public class SingleTest {
     }
 
     @BeforeMethod(alwaysRun = true)
-    public void setup(Method m) throws MalformedURLException {
+    public void setup() throws MalformedURLException {
         DesiredCapabilities caps = new DesiredCapabilities();
         driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), caps);
     }

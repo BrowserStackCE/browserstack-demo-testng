@@ -11,3 +11,6 @@ platforms:
     browserVersion: latest
 
 browserstackLocal: true
+
+debug: true
+testObservability: true

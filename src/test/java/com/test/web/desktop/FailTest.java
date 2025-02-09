@@ -10,7 +10,6 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
@@ -25,7 +24,7 @@ public class FailTest {
     private WebDriver driver;
 
     @BeforeMethod(alwaysRun = true)
-    public void setup(Method m) throws MalformedURLException {
+    public void setup() throws MalformedURLException {
         DesiredCapabilities caps = new DesiredCapabilities();
         driver = new RemoteWebDriver(new URL("http://127.0.0.1:4723/wd/hub"), caps);
     }

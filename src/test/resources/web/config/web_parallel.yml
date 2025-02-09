@@ -15,3 +15,5 @@ platforms:
     browserVersion: latest
   - deviceName: iPhone 15
     osVersion: 17
+
+testObservability: true
