@@ -12,10 +12,5 @@ platforms:
     browserVersion: latest
   - browserName: Firefox
     browserVersion: latest
-parallelsPerPlatform: 5
-
-browserstackLocal: true
-browserStackLocalOptions:
-  forceLocal: true
 
 turboScale: true

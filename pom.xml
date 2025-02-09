@@ -157,7 +157,7 @@
                                 </property>
                             </systemProperties>
                             <includes>
-                                <include>**/desktop/LocalTest.java</include>
+                                <include>**/desktop/SingleTest.java</include>
                             </includes>
                         </configuration>
                     </plugin>
@@ -180,7 +180,7 @@
                                 </property>
                             </systemProperties>
                             <includes>
-                                <include>**/desktop/*.java</include>
+                                <include>**/desktop/LocalTest.java</include>
                             </includes>
                         </configuration>
                     </plugin>
