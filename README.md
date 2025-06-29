@@ -244,3 +244,4 @@ Test execution using [TestNG](http://testng.org) on BrowserStack.
   ```sh
   export BROWSERSTACK_USERNAME=<your-username> && export BROWSERSTACK_ACCESS_KEY=<your-access-key>
   ```
+# browserstack-ai-selfheal
