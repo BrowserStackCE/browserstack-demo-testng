@@ -14,5 +14,6 @@ debug: true
 networkLogs: true
 consoleLogs: verbose
 testObservability: true
-performance: report
 accessibility: true
+performance: report
+browserProfiling: true
