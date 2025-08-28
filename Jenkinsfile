@@ -4,11 +4,6 @@ pipeline {
 		maven '3.9.11'
 	}
 	stages {
-	    stage ('Pull GitHub Repository') {
-	        steps {
-    			git branch: 'jenkins', url: 'git@github.com:BrowserStackCE/browserstack-demo-testng.git'
-	        }
-		}
 	    stage ('Initiate tests on BrowserStack') {
 	        steps {
     			browserstack(credentialsId: "${credentials}") {
