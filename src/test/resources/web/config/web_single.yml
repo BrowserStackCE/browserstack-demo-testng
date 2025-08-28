@@ -1,8 +1,7 @@
 userName: BROWSERSTACK_USERNAME
 accessKey: BROWSERSTACK_ACCESS_KEY
 
-projectName: BrowserStack Samples
-buildName: BrowserStack Demo Build
+projectName: BrowserStack Jenkins
 
 platforms:
   - os: Windows
