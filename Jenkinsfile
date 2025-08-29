@@ -7,6 +7,7 @@ pipeline {
 	    stage ('Initiate tests on BrowserStack') {
 	        steps {
     			browserstack(credentialsId: "${credentials}") {
+					sh "export BROWSERSTACK_RERUN=true"
                     sh "mvn clean -P ${configuration} test"
                 }
 	        }
