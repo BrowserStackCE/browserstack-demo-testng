@@ -22,16 +22,23 @@
             <artifactId>java-client</artifactId>
             <version>8.6.0</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>4.13.0</version>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/org.testng/testng -->
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>7.9.0</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/com.browserstack/browserstack-java-sdk -->
         <dependency>
             <groupId>com.browserstack</groupId>
             <artifactId>browserstack-java-sdk</artifactId>
-            <version>1.27.2</version>
+            <version>1.41.0</version>
             <scope>compile</scope>
         </dependency>
         <!-- https://mvnrepository.com/artifact/io.rest-assured/rest-assured -->
