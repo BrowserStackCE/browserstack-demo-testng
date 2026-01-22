@@ -11,7 +11,6 @@ import java.time.Duration;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -26,8 +25,7 @@ public class SingleTest {
     @BeforeMethod(alwaysRun = true)
     public void setup() throws MalformedURLException {
         DesiredCapabilities caps = new DesiredCapabilities();
-        // driver = new RemoteWebDriver(new URL("http://127.0.0.1:4723/wd/hub"), caps);
-        driver = new ChromeDriver();
+        driver = new RemoteWebDriver(new URL("http://127.0.0.1:4723/wd/hub"), caps);
     }
 
     @Test
