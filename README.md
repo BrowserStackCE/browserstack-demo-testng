@@ -121,46 +121,19 @@ Test execution using [TestNG](http://testng.org) on BrowserStack.
 
 - Run a single test
   ```
-  ./gradlew clean desktop-single
+  ./gradlew webSingle
   ```
 - Run parallel tests
   ```
-  ./gradlew clean desktop-parallel
+  ./gradlew webParallel
   ```
 - Run a failed test
   ```
-  ./gradlew clean desktop-fail
+  ./gradlew webFail
   ```
 - Run a local test
   ```
-  ./gradlew clean desktop-local
-  ```
-- Run parallel local tests
-  ```
-  ./gradlew clean desktop-local-parallel
-  ```
-
-#### Mobile browsers
-
-- Run a single test
-  ```
-  ./gradlew clean mobile-single
-  ```
-- Run parallel tests
-  ```
-  ./gradlew clean mobile-parallel
-  ```
-- Run a failed test
-  ```
-  ./gradlew clean mobile-fail
-  ```
-- Run a local test
-  ```
-  ./gradlew clean mobile-local
-  ```
-- Run parallel local tests
-  ```
-  ./gradlew clean mobile-local-parallel
+  ./gradlew webLocal
   ```
 
 ### App-Automate
@@ -169,60 +142,52 @@ Test execution using [TestNG](http://testng.org) on BrowserStack.
 
 - Run a single test
   ```
-  ./gradlew clean android-single
+  ./gradlew androidSingle
   ```
 - Run parallel tests
   ```
-  ./gradlew clean android-parallel
+  ./gradlew androidParallel
   ```
 - Run a failed test
   ```
-  ./gradlew clean android-fail
+  ./gradlew androidFail
   ```
 - Run a local test
   ```
-  ./gradlew clean android-local
-  ```
-- Run parallel local tests
-  ```
-  ./gradlew clean android-local-parallel
+  ./gradlew androidLocal
   ```
 
 #### iOS devices
 
 - Run a single test
   ```
-  ./gradlew clean ios-single
+  ./gradlew iosSingle
   ```
 - Run parallel tests
   ```
-  ./gradlew clean ios-parallel
+  ./gradlew iosParallel
   ```
 - Run a failed test
   ```
-  ./gradlew clean ios-fail
+  ./gradlew iosFail
   ```
 - Run a local test
   ```
-  ./gradlew clean ios-local
-  ```
-- Run parallel local tests
-  ```
-  ./gradlew clean ios-local-parallel
+  ./gradlew iosLocal
   ```
 
 #### Espresso tests
 
 - Run an Espresso test
   ```
-  ./gradlew clean espresso
+  ./gradlew espresso
   ```
   
 #### XCUI tests
 
 - Run a XCUI test
   ```
-  ./gradlew clean xcuitest
+  ./gradlew xcuitest
   ```
 
 ## Notes
@@ -244,4 +209,3 @@ Test execution using [TestNG](http://testng.org) on BrowserStack.
   ```sh
   export BROWSERSTACK_USERNAME=<your-username> && export BROWSERSTACK_ACCESS_KEY=<your-access-key>
   ```
-# browserstack-ai-selfheal

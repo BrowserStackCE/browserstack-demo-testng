@@ -37,7 +37,7 @@ public class SingleTest {
     }
 
     @Test
-    public void searchWikipedia() {
+    public void searchWikipedia() throws InterruptedException {
         Wait<AndroidDriver> wait = new FluentWait<>(driver)
                 .withTimeout(Duration.ofSeconds(10))
                 .ignoring(NotFoundException.class);

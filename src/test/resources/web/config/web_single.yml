@@ -13,7 +13,6 @@ platforms:
 debug: true
 networkLogs: true
 consoleLogs: verbose
-testObservability: true
 accessibility: true
 performance: report
 browserProfiling: true

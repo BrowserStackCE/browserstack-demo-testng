@@ -2,8 +2,8 @@
   "app": "CalculatorApp",
   "testSuite": "CalculatorAppTest",
   "devices": [
-    "Samsung Galaxy S20-10.0",
-    "Google Pixel 3-9.0"
+    "Samsung Galaxy S23-13.0",
+    "Google Pixel 9-16.0"
   ],
   "project": "BrowserStack Demo TestNG",
   "deviceLogs": true,

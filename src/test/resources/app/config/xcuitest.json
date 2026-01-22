@@ -2,8 +2,8 @@
   "app": "SampleApp",
   "testSuite": "SampleTest",
   "devices": [
-    "iPhone 8-11",
-    "iPhone 8 Plus-11"
+    "iPhone 17-26",
+    "iPhone 17 Pro-26"
   ],
   "project": "BrowserStack Demo TestNG",
   "deviceLogs": true,
