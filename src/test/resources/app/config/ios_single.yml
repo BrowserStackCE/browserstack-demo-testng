@@ -1,0 +1,18 @@
+userName: BROWSERSTACK_USERNAME
+accessKey: BROWSERSTACK_ACCESS_KEY
+
+projectName: BrowserStack Samples
+buildName: BrowserStack Demo Build
+
+app: iOSDemoApp
+
+platforms:
+  - deviceName: iPhone 13
+    osVersion: 15
+
+debug: true
+networkLogs: true
+appProfiling: true
+accessibility: true
+accessibilityOptions:
+    screenReaderAutomationReport: true
