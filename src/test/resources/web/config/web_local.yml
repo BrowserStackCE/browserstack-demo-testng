@@ -1,0 +1,13 @@
+userName: BROWSERSTACK_USERNAME
+accessKey: BROWSERSTACK_ACCESS_KEY
+
+projectName: BrowserStack Samples
+buildName: BrowserStack Demo Build
+
+platforms:
+  - os: OS X
+    osVersion: Sonoma
+    browserName: Chrome
+    browserVersion: latest
+
+browserstackLocal: true

@@ -1,0 +1,18 @@
+userName: BROWSERSTACK_USERNAME
+accessKey: BROWSERSTACK_ACCESS_KEY
+
+projectName: BrowserStack Samples
+buildName: BrowserStack Demo Build
+
+platforms:
+  - os: Windows
+    osVersion: 10
+    browserName: Chrome
+    browserVersion: latest
+
+debug: true
+networkLogs: true
+consoleLogs: verbose
+accessibility: true
+performance: report
+browserProfiling: true

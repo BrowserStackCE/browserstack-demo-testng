@@ -1,6 +1,7 @@
 target/
 build/
 logs/
+log/
 .project
 .settings/
 .classpath
@@ -9,3 +10,5 @@ logs/
 *.iml
 .DS_Store
 !gradle/wrapper/*
+.vscode/
+local.log

@@ -23,50 +23,23 @@ Test execution using [TestNG](http://testng.org) on BrowserStack.
   ```
   Website will open on `localhost:8000`.
 
-#### Desktop browsers
+#### Web browsers
 
 - Run a single test.
   ```
-  mvn -P desktop-single test
+  mvn -P web-single test
   ```
 - Run parallel tests.
   ```
-  mvn -P desktop-parallel test
+  mvn -P web-parallel test
   ```
 - Run a failed test.
   ```
-  mvn -P desktop-fail test
+  mvn -P web-fail test
   ```
 - Run a local test.
   ```
-  mvn -P desktop-local test
-  ```
-- Run parallel local tests.
-  ```
-  mvn -P desktop-local-parallel test
-  ```
-
-#### Mobile browsers
-
-- Run a single test.
-  ```
-  mvn -P mobile-single test
-  ```
-- Run parallel tests.
-  ```
-  mvn -P mobile-parallel test
-  ```
-- Run a failed test.
-  ```
-  mvn -P mobile-fail test
-  ```
-- Run a local test.
-  ```
-  mvn -P mobile-local test
-  ```
-- Run parallel local tests.
-  ```
-  mvn -P mobile-local-parallel test
+  mvn -P web-local test
   ```
 
 ### App-Automate
@@ -89,10 +62,6 @@ Test execution using [TestNG](http://testng.org) on BrowserStack.
   ```
   mvn -P android-local test
   ```
-- Run parallel local tests.
-  ```
-  mvn -P android-local-parallel test
-  ```
 
 #### iOS devices
 
@@ -111,10 +80,6 @@ Test execution using [TestNG](http://testng.org) on BrowserStack.
 - Run a local test.
   ```
   mvn -P ios-local test
-  ```
-- Run parallel local tests.
-  ```
-  mvn -P ios-local-parallel test
   ```
 
 #### Espresso tests
@@ -156,46 +121,19 @@ Test execution using [TestNG](http://testng.org) on BrowserStack.
 
 - Run a single test
   ```
-  ./gradlew clean desktop-single
+  ./gradlew webSingle
   ```
 - Run parallel tests
   ```
-  ./gradlew clean desktop-parallel
+  ./gradlew webParallel
   ```
 - Run a failed test
   ```
-  ./gradlew clean desktop-fail
+  ./gradlew webFail
   ```
 - Run a local test
   ```
-  ./gradlew clean desktop-local
-  ```
-- Run parallel local tests
-  ```
-  ./gradlew clean desktop-local-parallel
-  ```
-
-#### Mobile browsers
-
-- Run a single test
-  ```
-  ./gradlew clean mobile-single
-  ```
-- Run parallel tests
-  ```
-  ./gradlew clean mobile-parallel
-  ```
-- Run a failed test
-  ```
-  ./gradlew clean mobile-fail
-  ```
-- Run a local test
-  ```
-  ./gradlew clean mobile-local
-  ```
-- Run parallel local tests
-  ```
-  ./gradlew clean mobile-local-parallel
+  ./gradlew webLocal
   ```
 
 ### App-Automate
@@ -204,68 +142,57 @@ Test execution using [TestNG](http://testng.org) on BrowserStack.
 
 - Run a single test
   ```
-  ./gradlew clean android-single
+  ./gradlew androidSingle
   ```
 - Run parallel tests
   ```
-  ./gradlew clean android-parallel
+  ./gradlew androidParallel
   ```
 - Run a failed test
   ```
-  ./gradlew clean android-fail
+  ./gradlew androidFail
   ```
 - Run a local test
   ```
-  ./gradlew clean android-local
-  ```
-- Run parallel local tests
-  ```
-  ./gradlew clean android-local-parallel
+  ./gradlew androidLocal
   ```
 
 #### iOS devices
 
 - Run a single test
   ```
-  ./gradlew clean ios-single
+  ./gradlew iosSingle
   ```
 - Run parallel tests
   ```
-  ./gradlew clean ios-parallel
+  ./gradlew iosParallel
   ```
 - Run a failed test
   ```
-  ./gradlew clean ios-fail
+  ./gradlew iosFail
   ```
 - Run a local test
   ```
-  ./gradlew clean ios-local
-  ```
-- Run parallel local tests
-  ```
-  ./gradlew clean ios-local-parallel
+  ./gradlew iosLocal
   ```
 
 #### Espresso tests
 
 - Run an Espresso test
   ```
-  ./gradlew clean espresso
+  ./gradlew espresso
   ```
   
 #### XCUI tests
 
 - Run a XCUI test
   ```
-  ./gradlew clean xcuitest
+  ./gradlew xcuitest
   ```
 
 ## Notes
 - You can view your Automate test results on the [BrowserStack Automate dashboard](https://automate.browserstack.com/).
 - You can view your App-Automate test results on the [BrowserStack App-Automate dashboard](https://app-automate.browserstack.com/).
-- To use specific number of threads:
-  - For Maven use `-Dthreads=<thread-count>`. Example `-Dthreads=3`
-  - For Gradle use `-Pthreads=<thread-count>`. Example `-Pthreads=3`
 - Apps used to test on Android:
     - Demo App: [WikipediaSample.apk](https://www.browserstack.com/app-automate/sample-apps/android/WikipediaSample.apk)
     - Local App: [LocalSample.apk](https://www.browserstack.com/app-automate/sample-apps/android/LocalSample.apk)
@@ -280,5 +207,5 @@ Test execution using [TestNG](http://testng.org) on BrowserStack.
     - Test-suite: [BrowserStack-SampleXCUITest.zip](https://www.browserstack.com/app-automate/sample-apps/ios/BrowserStack-SampleXCUITest.zip)
 - Export the environment variables for the Username and Access Key of your BrowserStack account.
   ```sh
-  export BROWSERSTACK_USERNAME=<browserstack-username> && export BROWSERSTACK_ACCESS_KEY=<browserstack-access-key>
+  export BROWSERSTACK_USERNAME=<your-username> && export BROWSERSTACK_ACCESS_KEY=<your-access-key>
   ```
